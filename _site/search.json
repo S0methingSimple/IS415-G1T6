@@ -4,13 +4,34 @@
     "href": "proposal.html",
     "title": "Proposal",
     "section": "",
-    "text": "Overview\n\n\nOverview"
+    "text": "This study investigates the spatial distribution and evolution of crime in Malaysia over recent years. By employing advanced spatial analysis techniques, we aim to identify hotspots, coldspots, and emerging trends in crime patterns. Our analysis utilizes a comprehensive dataset of crime incidents, including location, type, and date of occurrence.\n\n\n\n\n\n\n\n\nThe primary objective of this project is to investigate the spatial patterns and relationships of various crime types in Malaysia over time. By employing spatial analysis techniques, we aim to:\n\nIdentify hotspots and coldspots of crime.\nAssess the spatial autocorrelation of crime rates.\nExplore the impact of neighboring crime rates on local crime patterns.\nUnderstand how crime patterns vary across different regions.\nIdentify emerging hotspots where crime rates are rapidly increasing."
+  },
+  {
+    "objectID": "proposal.html#research-objective",
+    "href": "proposal.html#research-objective",
+    "title": "Proposal",
+    "section": "",
+    "text": "The primary objective of this project is to investigate the spatial patterns and relationships of various crime types in Malaysia over time. By employing spatial analysis techniques, we aim to:\n\nIdentify hotspots and coldspots of crime.\nAssess the spatial autocorrelation of crime rates.\nExplore the impact of neighboring crime rates on local crime patterns.\nUnderstand how crime patterns vary across different regions.\nIdentify emerging hotspots where crime rates are rapidly increasing."
+  },
+  {
+    "objectID": "proposal.html#data-collection-and-preparation",
+    "href": "proposal.html#data-collection-and-preparation",
+    "title": "Proposal",
+    "section": "2.1 Data Collection and Preparation:",
+    "text": "2.1 Data Collection and Preparation:\n\nAcquire Malaysia Crime data by district by year by type\nPrepare the data for analysis, including spatial data cleaning and standardization."
+  },
+  {
+    "objectID": "proposal.html#spatial-analysis-techniques",
+    "href": "proposal.html#spatial-analysis-techniques",
+    "title": "Proposal",
+    "section": "2.2 Spatial Analysis Techniques:",
+    "text": "2.2 Spatial Analysis Techniques:\n\nEDA Choropleth Maps: Visualize crime rates across Malaysia over time and by crime type using color-coded polygons.\nSpatial Lag Model: Calculate the spatial lag of crime rates to assess the impact of neighboring crime rates.\nGlobal Spatial Autocorrelation: Use Moran’s I or Geary’s C to measure the overall spatial pattern of crime rates.\nLocal Spatial Autocorrelation: Employ LISA maps to identify hotspots and coldspots of crime.\nHotspot and Coldspot Analysis: Use Getis-Ord G-statistics to identify areas with high and low concentrations of crime.\nEmerging Hotspot Analysis: Analyze changes in crime rates over time to identify areas with rapidly increasing crime rates.\nSpatial Heterogeneity Analysis: Explore regional differences in crime patterns using choropleth maps and box plots."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Crime Analysis in Malaysia",
+    "title": "Crime Hotspots: A Malaysian Perspective",
     "section": "",
-    "text": "This is a Quarto website."
+    "text": "Alws out bussin some crime. Satu Malaysia 🇲🇾!"
   }
 ]

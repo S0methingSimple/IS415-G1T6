@@ -2,7 +2,99 @@
 title: "Proposal"
 ---
 
-# Overview
+# 1. Introduction
 
+This study investigates the spatial distribution and evolution of crime in Malaysia over recent years. By employing advanced spatial analysis techniques, we aim to identify hotspots, coldspots, and emerging trends in crime patterns. Our analysis utilizes a comprehensive dataset of crime incidents, including location, type, and date of occurrence.
 
-# Overview
+## 1.1 Literature Review
+
+## 1.1 Significance of Spatial Analysis in understanding Crime patterns
+
+## 1.2 Research Objective
+
+The primary objective of this project is to investigate the spatial patterns and relationships of various crime types in Malaysia over time. By employing spatial analysis techniques, we aim to:
+
+-   Identify hotspots and coldspots of crime.
+
+-   Assess the spatial autocorrelation of crime rates.
+
+-   Explore the impact of neighboring crime rates on local crime patterns.
+
+-   Understand how crime patterns vary across different regions.
+
+-   Identify emerging hotspots where crime rates are rapidly increasing.
+
+# 2. Methodology
+
+## 2.1 Data Collection and Preparation:
+
+-   Acquire Malaysia Crime [data](https://data.gov.my/data-catalogue/crime_district?state=johor&district=all&category=assault&type=all&visual=table) by district by year by type
+-   Prepare the data for analysis, including spatial data cleaning and standardization.
+
+## 2.2 Spatial Analysis Techniques:
+
+1.  EDA Choropleth Maps: Visualize crime rates across Malaysia over time and by crime type using color-coded polygons.
+2.  Spatial Lag Model: Calculate the spatial lag of crime rates to assess the impact of neighboring crime rates.
+3.  Global Spatial Autocorrelation: Use Moran's I or Geary's C to measure the overall spatial pattern of crime rates.
+4.  Local Spatial Autocorrelation: Employ LISA maps to identify hotspots and coldspots of crime.
+5.  Hotspot and Coldspot Analysis: Use Getis-Ord G-statistics to identify areas with high and low concentrations of crime.
+6.  Emerging Hotspot Analysis: Analyze changes in crime rates over time to identify areas with rapidly increasing crime rates.
+7.  Spatial Heterogeneity Analysis: Explore regional differences in crime patterns using choropleth maps and box plots.
+
+# 3. Analysis in Detail
+
+### 1. **Choropleth Map for EDA (+ Histogram)**
+
+-   **Purpose:** Provide an overview of crime rates across Malaysia over time and by crime type.
+
+-   **Visualization:** A choropleth map with a slider to select the year and a dropdown to choose the crime type. The map should display the crime rate for the selected year and crime type using a color scale.
+
+### 2. **Spatial Lag Model (Various)**
+
+-   **Purpose:** Assess the impact of neighboring crime rates on a specific location's crime rate.
+
+-   **Visualization:** A choropleth map showing the spatial lag values for different crime types. Areas with high lag values indicate that neighboring areas have high crime rates.
+
+### 3. **Global Spatial Autocorrelation (Moran's I and/or Geary's C)**
+
+-   **Purpose:** Assess the overall spatial pattern of crime rates across Malaysia.
+
+-   **Visualization:** A choropleth map showing the Moran's I or Geary's C values for different crime types. Areas with high positive values indicate clustering of similar values, while areas with high negative values indicate dispersion of dissimilar values.
+
+### 4. **Local Spatial Autocorrelation (Local Moran's I - LISA Map)**
+
+-   **Purpose:** Identify hotspots and coldspots of crime.
+
+-   **Visualization:** A LISA map showing the local Moran's I values for different crime types. Hotspots will have high positive values, while coldspots will have high negative values.
+
+### 5. **Hotspot and Coldspot Analysis (Getis-Ord G-Statistics)**
+
+-   **Purpose:** Identify areas with high and low concentrations of crime.
+
+-   **Visualization:** A choropleth map showing the G-statistics values for different crime types. Hotspots will have high G-statistics values, while coldspots will have low values.
+
+### 6. **Emerging Hotspot Analysis**
+
+-   **Purpose:** Identify areas where crime rates are increasing rapidly.
+
+-   **Visualization:** A choropleth map showing the change in crime rates over time for different areas. Areas with significant increases in crime rates can be identified as emerging hotspots.
+
+### 7. **Spatial Heterogeneity or Temporal Analysis**
+
+-   **Purpose:** Explore how crime patterns vary across different regions.
+
+-   **Visualization:** A series of choropleth maps or box plots showing the distribution of crime rates in different regions or clusters. This can reveal regional differences in crime patterns.
+
+# 4. Expected Outcomes
+
+This project will provide valuable insights into the spatial dynamics of crime in Malaysia. The findings can inform effective crime prevention strategies, resource allocation, and policy development. By understanding the factors influencing crime patterns, policymakers can take targeted measures to reduce crime rates and improve public safety. The following are the expected outcome of our analysis
+
+-   Identification of areas with high and low crime concentrations.
+
+-   Assessment of spatial autocorrelation and clustering patterns.
+
+-   Understanding of the relationship between crime rates and neighboring areas.
+
+-   Identification of emerging hotspots for targeted crime prevention efforts.
+
+-   Insights into regional variations in crime patterns.
