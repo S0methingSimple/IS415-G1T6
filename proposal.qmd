@@ -34,7 +34,7 @@ For this study, exploratory spatial data analysis (ESDA) has been employed to in
 
 These studies collectively demonstrate the value of spatial analysis in understanding crime patterns, offering policymakers and law enforcement crucial insights for strategic planning and resource allocation.
 
-## 1.1 Significance of Spatial Analysis in understanding Crime patterns
+## 1.2 Significance of Spatial Analysis in understanding Crime patterns
 
 Spatial analysis plays a crucial role in understanding crime patterns by revealing how crimes are distributed across geographic areas and identifying key locations where criminal activities concentrate. Through advanced techniques like hotspot analysis, kernel density estimation, and spatial autocorrelation, spatial analysis enables researchers to detect high-risk areas (hotspots) and safer regions (coldspots).
 
@@ -42,7 +42,7 @@ This geographic insight helps to visualize crime trends, assess environmental or
 
 By identifying patterns and trends at both macro and micro levels, spatial analysis enhances our ability to understand the dynamics of crime and to mitigate its impact on society.
 
-## 1.2 Research Objective
+## 1.3 Research Objective
 
 The primary objective of this project is to investigate the spatial patterns and relationships of various crime types in Malaysia over time. By employing spatial analysis techniques, we aim to:
 
