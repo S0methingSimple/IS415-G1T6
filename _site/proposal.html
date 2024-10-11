@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jeffery Lau, Hei Yee Kai, Jenna Cheo">
 
 <title>JENAYAH BUSTERS 👮🏽👮🏽‍♂👮🏽‍♀️️️ - Proposal</title>
 <style>
@@ -134,9 +135,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#spatial-lag-model-various" id="toc-spatial-lag-model-various" class="nav-link" data-scroll-target="#spatial-lag-model-various">2. <strong>Spatial Lag Model (Various)</strong></a></li>
   <li><a href="#global-spatial-autocorrelation-morans-i-andor-gearys-c" id="toc-global-spatial-autocorrelation-morans-i-andor-gearys-c" class="nav-link" data-scroll-target="#global-spatial-autocorrelation-morans-i-andor-gearys-c">3. <strong>Global Spatial Autocorrelation (Moran’s I and/or Geary’s C)</strong></a></li>
   <li><a href="#local-spatial-autocorrelation-local-morans-i---lisa-map" id="toc-local-spatial-autocorrelation-local-morans-i---lisa-map" class="nav-link" data-scroll-target="#local-spatial-autocorrelation-local-morans-i---lisa-map">4. <strong>Local Spatial Autocorrelation (Local Moran’s I - LISA Map)</strong></a></li>
-  <li><a href="#hotspot-and-coldspot-analysis-getis-ord-g-statistics" id="toc-hotspot-and-coldspot-analysis-getis-ord-g-statistics" class="nav-link" data-scroll-target="#hotspot-and-coldspot-analysis-getis-ord-g-statistics">5. <strong>Hotspot and Coldspot Analysis (Getis-Ord G-Statistics)</strong></a></li>
-  <li><a href="#emerging-hotspot-analysis" id="toc-emerging-hotspot-analysis" class="nav-link" data-scroll-target="#emerging-hotspot-analysis">6. <strong>Emerging Hotspot Analysis</strong></a></li>
-  <li><a href="#spatial-heterogeneity-or-temporal-analysis" id="toc-spatial-heterogeneity-or-temporal-analysis" class="nav-link" data-scroll-target="#spatial-heterogeneity-or-temporal-analysis">7. <strong>Spatial Heterogeneity or Temporal Analysis</strong></a></li>
+  <li><a href="#emerging-hotspot-analysis" id="toc-emerging-hotspot-analysis" class="nav-link" data-scroll-target="#emerging-hotspot-analysis">5. <strong>Emerging Hotspot Analysis</strong></a></li>
   </ul></li>
   <li><a href="#expected-outcomes" id="toc-expected-outcomes" class="nav-link" data-scroll-target="#expected-outcomes">4. Expected Outcomes</a></li>
   </ul>
@@ -154,8 +153,20 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeffery Lau, Hei Yee Kai, Jenna Cheo </p>
+          </div>
+  </div>
     
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">October 11, 2024</p>
+    </div>
+  </div>
     
   </div>
   
@@ -193,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="significance-of-spatial-analysis-in-understanding-crime-patterns">1.2 Significance of Spatial Analysis in understanding Crime patterns</h2>
 <p>Spatial analysis plays a crucial role in understanding crime patterns by revealing how crimes are distributed across geographic areas and identifying key locations where criminal activities concentrate. Through advanced techniques like hotspot analysis, kernel density estimation, and spatial autocorrelation, spatial analysis enables researchers to detect high-risk areas (hotspots) and safer regions (coldspots).</p>
 <p>This geographic insight helps to visualize crime trends, assess environmental or socio-economic factors influencing crime rates, and predict future crime occurrences. In the context of Malaysia, spatial analysis can highlight the impact of urban development, population density, or infrastructure on crime, enabling policymakers and law enforcement agencies to allocate resources more efficiently and design targeted crime prevention strategies based on geographic evidence.</p>
-<p>By identifying patterns and trends at both macro and micro levels, spatial analysis enhances our ability to understand the dynamics of crime and to mitigate its impact on society.</p>
+<p>By identifying patterns and trends at both macro and micro levels, we can better understand the dynamics of crime and to mitigate its impact on society.</p>
 </section>
 <section id="research-objective" class="level2">
 <h2 class="anchored" data-anchor-id="research-objective">1.3 Research Objective</h2>
@@ -212,20 +223,24 @@ ul.task-list li input[type="checkbox"] {
 <section id="data-collection-and-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="data-collection-and-preparation">2.1 Data Collection and Preparation:</h2>
 <ul>
-<li>Acquire Malaysia Crime <a href="https://data.gov.my/data-catalogue/crime_district?state=johor&amp;district=all&amp;category=assault&amp;type=all&amp;visual=table">data</a> by district by year by type</li>
-<li>Prepare the data for analysis, including spatial data cleaning and standardization.</li>
+<li>Acquire Malaysia Crime <a href="https://data.gov.my/data-catalogue/crime_district?state=johor&amp;district=all&amp;category=assault&amp;type=all&amp;visual=table">data</a> by district, year and by type.</li>
+<li>Inspecting and understanding data fields.</li>
+<li>Preparing the data for analysis, including spatial data wrangling and standardization.</li>
 </ul>
 </section>
 <section id="spatial-analysis-techniques" class="level2">
 <h2 class="anchored" data-anchor-id="spatial-analysis-techniques">2.2 Spatial Analysis Techniques:</h2>
 <ol type="1">
-<li>EDA Choropleth Maps: Visualize crime rates across Malaysia over time and by crime type using color-coded polygons.</li>
-<li>Spatial Lag Model: Calculate the spatial lag of crime rates to assess the impact of neighboring crime rates.</li>
-<li>Global Spatial Autocorrelation: Use Moran’s I or Geary’s C to measure the overall spatial pattern of crime rates.</li>
-<li>Local Spatial Autocorrelation: Employ LISA maps to identify hotspots and coldspots of crime.</li>
-<li>Hotspot and Coldspot Analysis: Use Getis-Ord G-statistics to identify areas with high and low concentrations of crime.</li>
-<li>Emerging Hotspot Analysis: Analyze changes in crime rates over time to identify areas with rapidly increasing crime rates.</li>
-<li>Spatial Heterogeneity Analysis: Explore regional differences in crime patterns using choropleth maps and box plots.</li>
+<li><strong>EDA Choropleth Maps</strong><br>
+Visualize crime rates across Malaysia over time and by crime type using color-coded polygons.</li>
+<li><strong>Spatial Lag Model<br>
+</strong>Calculate the spatial lag of crime rates to assess the impact of neighboring crime rates.</li>
+<li><strong>Global Spatial Autocorrelation<br>
+</strong>Use Moran’s I or Geary’s C to measure the overall spatial pattern of crime rates.</li>
+<li><strong>Local Spatial Autocorrelation<br>
+</strong>Employing LISA maps to identify hotspots and coldspots of crime.</li>
+<li><strong>Emerging Hotspot Analysis<br>
+</strong>Analyze changes in crime rates over time to identify areas with rapidly increasing crime rates.</li>
 </ol>
 </section>
 </section>
@@ -233,57 +248,28 @@ ul.task-list li input[type="checkbox"] {
 <h1>3. Analysis in Detail</h1>
 <section id="choropleth-map-for-eda-histogram" class="level3">
 <h3 class="anchored" data-anchor-id="choropleth-map-for-eda-histogram">1. <strong>Choropleth Map for EDA (+ Histogram)</strong></h3>
-<ul>
-<li><p><strong>Purpose:</strong> Provide an overview of crime rates across Malaysia over time and by crime type.</p></li>
-<li><p><strong>Visualization:</strong> A choropleth map with a slider to select the year and a dropdown to choose the crime type. The map should display the crime rate for the selected year and crime type using a color scale.</p></li>
-</ul>
+<p>A Choropleth Map for Exploratory Data Analysis (EDA) with a histogram will be at the core of this project. This interactive map will allow users to view crime hotspots and filter them based on different conditions, providing an overview of crime rates across Malaysia over time. Users can adjust a slider to select the year and use a dropdown menu to choose the crime type, with the map displaying the crime rate using a color scale.</p>
 </section>
 <section id="spatial-lag-model-various" class="level3">
 <h3 class="anchored" data-anchor-id="spatial-lag-model-various">2. <strong>Spatial Lag Model (Various)</strong></h3>
-<ul>
-<li><p><strong>Purpose:</strong> Assess the impact of neighboring crime rates on a specific location’s crime rate.</p></li>
-<li><p><strong>Visualization:</strong> A choropleth map showing the spatial lag values for different crime types. Areas with high lag values indicate that neighboring areas have high crime rates.</p></li>
-</ul>
+<p>A Spatial Lag Model will also be used to assess the impact of neighboring crime rates on specific locations. This will be visualized through a choropleth map showing spatial lag values for different crime types, with high lag values meaning that neighboring areas have high crime rates.</p>
 </section>
 <section id="global-spatial-autocorrelation-morans-i-andor-gearys-c" class="level3">
 <h3 class="anchored" data-anchor-id="global-spatial-autocorrelation-morans-i-andor-gearys-c">3. <strong>Global Spatial Autocorrelation (Moran’s I and/or Geary’s C)</strong></h3>
-<ul>
-<li><p><strong>Purpose:</strong> Assess the overall spatial pattern of crime rates across Malaysia.</p></li>
-<li><p><strong>Visualization:</strong> A choropleth map showing the Moran’s I or Geary’s C values for different crime types. Areas with high positive values indicate clustering of similar values, while areas with high negative values indicate dispersion of dissimilar values.</p></li>
-</ul>
+<p>Global Spatial Autocorrelation will be analyzed using Moran’s I and/or Geary’s C statistics to assess the overall spatial pattern of crime rates across Malaysia. This will be represented by a choropleth map showing Moran’s I or Geary’s C values for different crime types, with high positive values indicating clustering of similar values and high negative values indicating dispersion of dissimilar values.</p>
 </section>
 <section id="local-spatial-autocorrelation-local-morans-i---lisa-map" class="level3">
 <h3 class="anchored" data-anchor-id="local-spatial-autocorrelation-local-morans-i---lisa-map">4. <strong>Local Spatial Autocorrelation (Local Moran’s I - LISA Map)</strong></h3>
-<ul>
-<li><p><strong>Purpose:</strong> Identify hotspots and coldspots of crime.</p></li>
-<li><p><strong>Visualization:</strong> A LISA map showing the local Moran’s I values for different crime types. Hotspots will have high positive values, while coldspots will have high negative values.</p></li>
-</ul>
-</section>
-<section id="hotspot-and-coldspot-analysis-getis-ord-g-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="hotspot-and-coldspot-analysis-getis-ord-g-statistics">5. <strong>Hotspot and Coldspot Analysis (Getis-Ord G-Statistics)</strong></h3>
-<ul>
-<li><p><strong>Purpose:</strong> Identify areas with high and low concentrations of crime.</p></li>
-<li><p><strong>Visualization:</strong> A choropleth map showing the G-statistics values for different crime types. Hotspots will have high G-statistics values, while coldspots will have low values.</p></li>
-</ul>
+<p>Local Spatial Autocorrelation will be examined using Local Moran’s I, visualized through a LISA map. This helps identify hotspots and coldspots of crime, with hotspots having high positive values and coldspots having high negative values.</p>
 </section>
 <section id="emerging-hotspot-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="emerging-hotspot-analysis">6. <strong>Emerging Hotspot Analysis</strong></h3>
-<ul>
-<li><p><strong>Purpose:</strong> Identify areas where crime rates are increasing rapidly.</p></li>
-<li><p><strong>Visualization:</strong> A choropleth map showing the change in crime rates over time for different areas. Areas with significant increases in crime rates can be identified as emerging hotspots.</p></li>
-</ul>
-</section>
-<section id="spatial-heterogeneity-or-temporal-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="spatial-heterogeneity-or-temporal-analysis">7. <strong>Spatial Heterogeneity or Temporal Analysis</strong></h3>
-<ul>
-<li><p><strong>Purpose:</strong> Explore how crime patterns vary across different regions.</p></li>
-<li><p><strong>Visualization:</strong> A series of choropleth maps or box plots showing the distribution of crime rates in different regions or clusters. This can reveal regional differences in crime patterns.</p></li>
-</ul>
+<h3 class="anchored" data-anchor-id="emerging-hotspot-analysis">5. <strong>Emerging Hotspot Analysis</strong></h3>
+<p>We will also use Emerging Hotspot Analysis to identify areas where crime rates are increasing rapidly. This will be visualized through a choropleth map showing the change in crime rates over time for different areas, allowing for the identification of areas with significant increases in crime rates being shown as emerging hotspots.</p>
 </section>
 </section>
 <section id="expected-outcomes" class="level1">
 <h1>4. Expected Outcomes</h1>
-<p>This project will provide valuable insights into the spatial dynamics of crime in Malaysia. The findings can inform effective crime prevention strategies, resource allocation, and policy development. By understanding the factors influencing crime patterns, policymakers can take targeted measures to reduce crime rates and improve public safety. The following are the expected outcome of our analysis</p>
+<p>This project will provide valuable insights into the spatial dynamics of crime in Malaysia. The findings can assist in determining resource allocation and policy development. By understanding the factors influencing crime patterns, policymakers can take targeted measures to reduce crime rates and improve public safety. The following are the expected outcome of our analysis</p>
 <ul>
 <li><p>Identification of areas with high and low crime concentrations.</p></li>
 <li><p>Assessment of spatial autocorrelation and clustering patterns.</p></li>

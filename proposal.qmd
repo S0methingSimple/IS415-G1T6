@@ -99,7 +99,7 @@ Global Spatial Autocorrelation will be analyzed using Moran's I and/or Geary's C
 
 Local Spatial Autocorrelation will be examined using Local Moran's I, visualized through a LISA map. This helps identify hotspots and coldspots of crime, with hotspots having high positive values and coldspots having high negative values.
 
-### 6. **Emerging Hotspot Analysis**
+### 5. **Emerging Hotspot Analysis**
 
 We will also use Emerging Hotspot Analysis to identify areas where crime rates are increasing rapidly. This will be visualized through a choropleth map showing the change in crime rates over time for different areas, allowing for the identification of areas with significant increases in crime rates being shown as emerging hotspots.
 
