@@ -2,6 +2,14 @@
 title: "Crime Hotspots: A Malaysian Perspective"
 ---
 
-Alws out bussin some crime. Satu Malaysia 🇲🇾!
+![](assets/banner.jpeg){width="1000"}
 
-![](assets/banner.jpeg)
+Sniffing out crime hotspots in Malaysia, making sure everyone stays safe.
+
+By Group 6: Hei Yee Kai, Jeffery Lau Wei Yang, Cheo Hai Xuan Jenna
+
+This project is done for Singapore Management University’s IS415 Geospatial Analytics & Applications 2024.
+
+This is our webpage where we aim to create an interactive application that allows users to easily view and analyse crime rates in Malaysia.
+
+Satu Malaysia 🇲🇾!
