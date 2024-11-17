@@ -11,6 +11,8 @@ website:
         text: Project Proposal
       - href: poster.qmd
         text: Project Poster
+      - href: datapreprocessing.qmd
+        text: Data Pre-processing
 
 format:
   html:

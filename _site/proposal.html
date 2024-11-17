@@ -101,6 +101,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./poster.html"> 
 <span class="menu-text">Project Poster</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./datapreprocessing.html"> 
+<span class="menu-text">Data Pre-processing</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -135,12 +139,15 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#analysis-in-detail" id="toc-analysis-in-detail" class="nav-link" data-scroll-target="#analysis-in-detail">3. Analysis in Detail</a>
   <ul class="collapse">
-  <li><a href="#choropleth-map-for-eda-histogram" id="toc-choropleth-map-for-eda-histogram" class="nav-link" data-scroll-target="#choropleth-map-for-eda-histogram">1. <strong>Choropleth Map for EDA (+ Histogram)</strong></a></li>
+  <li><a href="#choropleth-map-for-eda" id="toc-choropleth-map-for-eda" class="nav-link" data-scroll-target="#choropleth-map-for-eda">1. <strong>Choropleth Map for EDA</strong></a></li>
   <li><a href="#crime-trends-analysis-dashboard" id="toc-crime-trends-analysis-dashboard" class="nav-link" data-scroll-target="#crime-trends-analysis-dashboard">2. <strong>Crime Trends Analysis Dashboard</strong></a></li>
-  <li><a href="#global-spatial-autocorrelation-morans-i-andor-gearys-c" id="toc-global-spatial-autocorrelation-morans-i-andor-gearys-c" class="nav-link" data-scroll-target="#global-spatial-autocorrelation-morans-i-andor-gearys-c">3. <strong>Global Spatial Autocorrelation (Moran’s I and/or Geary’s C)</strong></a></li>
-  <li><a href="#local-spatial-autocorrelation-local-morans-i---lisa-map" id="toc-local-spatial-autocorrelation-local-morans-i---lisa-map" class="nav-link" data-scroll-target="#local-spatial-autocorrelation-local-morans-i---lisa-map">4. <strong>Local Spatial Autocorrelation (Local Moran’s I - LISA Map)</strong></a></li>
-  <li><a href="#spatial-clustering-configurations" id="toc-spatial-clustering-configurations" class="nav-link" data-scroll-target="#spatial-clustering-configurations">5. <strong>Spatial Clustering Configurations</strong></a></li>
-  <li><a href="#spatial-clustering-results" id="toc-spatial-clustering-results" class="nav-link" data-scroll-target="#spatial-clustering-results">6. <strong>Spatial Clustering Results</strong></a></li>
+  <li><a href="#state-comparison" id="toc-state-comparison" class="nav-link" data-scroll-target="#state-comparison">3. <strong>State Comparison</strong></a></li>
+  <li><a href="#global-spatial-autocorrelation-morans-i-andor-gearys-c" id="toc-global-spatial-autocorrelation-morans-i-andor-gearys-c" class="nav-link" data-scroll-target="#global-spatial-autocorrelation-morans-i-andor-gearys-c">4. <strong>Global Spatial Autocorrelation (Moran’s I and/or Geary’s C)</strong></a></li>
+  <li><a href="#local-spatial-autocorrelation-local-morans-i---lisa-map" id="toc-local-spatial-autocorrelation-local-morans-i---lisa-map" class="nav-link" data-scroll-target="#local-spatial-autocorrelation-local-morans-i---lisa-map">5. <strong>Local Spatial Autocorrelation (Local Moran’s I - LISA Map)</strong></a></li>
+  <li><a href="#hot-cold-spot-analysis" id="toc-hot-cold-spot-analysis" class="nav-link" data-scroll-target="#hot-cold-spot-analysis">6. <strong>Hot Cold Spot Analysis</strong></a></li>
+  <li><a href="#variable-exploration" id="toc-variable-exploration" class="nav-link" data-scroll-target="#variable-exploration">7. <strong>Variable exploration</strong></a></li>
+  <li><a href="#spatial-clustering-configurations" id="toc-spatial-clustering-configurations" class="nav-link" data-scroll-target="#spatial-clustering-configurations">8. <strong>Spatial Clustering Configurations</strong></a></li>
+  <li><a href="#spatial-clustering-results" id="toc-spatial-clustering-results" class="nav-link" data-scroll-target="#spatial-clustering-results">9. <strong>Spatial Clustering Results</strong></a></li>
   </ul></li>
   <li><a href="#expected-outcomes" id="toc-expected-outcomes" class="nav-link" data-scroll-target="#expected-outcomes">4. Expected Outcomes</a></li>
   </ul>
@@ -251,8 +258,8 @@ Visualize crime rates across Malaysia over time and by crime type using color-co
 </section>
 <section id="analysis-in-detail" class="level1">
 <h1>3. Analysis in Detail</h1>
-<section id="choropleth-map-for-eda-histogram" class="level3">
-<h3 class="anchored" data-anchor-id="choropleth-map-for-eda-histogram">1. <strong>Choropleth Map for EDA (+ Histogram)</strong></h3>
+<section id="choropleth-map-for-eda" class="level3">
+<h3 class="anchored" data-anchor-id="choropleth-map-for-eda">1. <strong>Choropleth Map for EDA</strong></h3>
 <p>(Done by: Yee Kai)</p>
 <p>A Choropleth Map for Exploratory Data Analysis (EDA) with a histogram will be at the core of this project. This interactive map will allow users to <strong>view crime hotspots</strong> and filter them based on different conditions, providing an overview of crime rates across Malaysia over time. Users can adjust a slider to select the year and use a dropdown menu to choose the crime type, with the map displaying the crime rate using a color scale.</p>
 </section>
@@ -261,23 +268,38 @@ Visualize crime rates across Malaysia over time and by crime type using color-co
 <p>(Done by: Yee Kai)</p>
 <p>A comprehensive dashboard to compare crime trends between different states and over various time periods. By filtering the dashboard by year and crime type, users can delve into specific crime patterns and view potential factors influencing these trends.</p>
 </section>
+<section id="state-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="state-comparison">3. <strong>State Comparison</strong></h3>
+<p>(Done by: Yee Kai)</p>
+<p>Assess the relative crime rates of different states by viewing the total sum or mean of crimes for each state, compared to the national average. By filtering by year, state, and crime type, users can observe the crime patterns across West Malaysia.</p>
+</section>
 <section id="global-spatial-autocorrelation-morans-i-andor-gearys-c" class="level3">
-<h3 class="anchored" data-anchor-id="global-spatial-autocorrelation-morans-i-andor-gearys-c">3. <strong>Global Spatial Autocorrelation (Moran’s I and/or Geary’s C)</strong></h3>
+<h3 class="anchored" data-anchor-id="global-spatial-autocorrelation-morans-i-andor-gearys-c">4. <strong>Global Spatial Autocorrelation (Moran’s I and/or Geary’s C)</strong></h3>
 <p>(Done by: Jenna)</p>
 <p>Global Spatial Autocorrelation will be represented by a choropleth map showing <strong>Moran’s I or Geary’s C values</strong> for different crime types, with high positive values indicating clustering of similar values and high negative values indicating dispersion of dissimilar values.</p>
 </section>
 <section id="local-spatial-autocorrelation-local-morans-i---lisa-map" class="level3">
-<h3 class="anchored" data-anchor-id="local-spatial-autocorrelation-local-morans-i---lisa-map">4. <strong>Local Spatial Autocorrelation (Local Moran’s I - LISA Map)</strong></h3>
+<h3 class="anchored" data-anchor-id="local-spatial-autocorrelation-local-morans-i---lisa-map">5. <strong>Local Spatial Autocorrelation (Local Moran’s I - LISA Map)</strong></h3>
 <p>(Done by: Jenna)</p>
-<p>Local Spatial Autocorrelation will be examined using Local Moran’s I, visualized through a LISA map. This helps identify <strong>hotspots and coldspots of crime</strong>, with hotspots having high positive values and coldspots having high negative values.</p>
+<p>Local Spatial Autocorrelation will be examined using Local Moran’s I, visualized through a LISA map. This highlights statistically significant clusters of high and low values.</p>
+</section>
+<section id="hot-cold-spot-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="hot-cold-spot-analysis">6. <strong>Hot Cold Spot Analysis</strong></h3>
+<p>(Done by: Jenna)</p>
+<p>Allows users to filter the map by hotspots or coldspots and customize the weight matrix to identify significant clusters of high and low crime rates.</p>
+</section>
+<section id="variable-exploration" class="level3">
+<h3 class="anchored" data-anchor-id="variable-exploration">7. <strong>Variable exploration</strong></h3>
+<p>(Done by: Jeffery)</p>
+<p>Visualisation of the distribution of various variables, filtering and standardizing data, and calculating correlations between variables. By identifying significant relationships between variables, we can possibly identify potential causes of crime.</p>
 </section>
 <section id="spatial-clustering-configurations" class="level3">
-<h3 class="anchored" data-anchor-id="spatial-clustering-configurations">5. <strong>Spatial Clustering Configurations</strong></h3>
+<h3 class="anchored" data-anchor-id="spatial-clustering-configurations">8. <strong>Spatial Clustering Configurations</strong></h3>
 <p>(Done by: Jeffery)</p>
 <p>To uncover underlying spatial patterns in crime data, we explored various clustering configurations. By experimenting with different clustering algorithms and parameter settings, we aimed to identify the optimal clustering scheme that best represents the spatial distribution of crime.</p>
 </section>
 <section id="spatial-clustering-results" class="level3">
-<h3 class="anchored" data-anchor-id="spatial-clustering-results">6. <strong>Spatial Clustering Results</strong></h3>
+<h3 class="anchored" data-anchor-id="spatial-clustering-results">9. <strong>Spatial Clustering Results</strong></h3>
 <p>(Done by: Jeffery)</p>
 <p>Interactive cluster plots and subplots, were used to visualize and interpret the clustering patterns. By comparing different clustering techniques, users can identify the most effective approach for understanding the spatial relationships between crime events.</p>
 </section>
