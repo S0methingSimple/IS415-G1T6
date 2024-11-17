@@ -8,7 +8,9 @@ website:
       - href: index.qmd
         text: Home
       - href: proposal.qmd
-        text: Proposal
+        text: Project Proposal
+      - href: poster.qmd
+        text: Project Poster
 
 format:
   html:

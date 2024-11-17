@@ -1,0 +1,9 @@
+---
+title: "Poster"
+author: "Jeffery Lau, Hei Yee Kai, Jenna Cheo"
+date-modified: "last-modified"
+format: html
+editor: visual
+---
+
+![](assets/IS415 PENYELIDIK JENAYAH.png)
