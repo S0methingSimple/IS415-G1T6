@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jeffery Lau, Hei Yee Kai, Jenna Cheo">
 
-<title>datapreprocessing – PENYELIDIK JENAYAH 👮🏽👮🏽‍♂👮🏽‍♀️️️</title>
+<title>Data Pre-Processing – PENYELIDIK JENAYAH 👮🏽👮🏽‍♂👮🏽‍♀️️️</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -119,17 +154,1097 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#page-overview" id="toc-page-overview" class="nav-link active" data-scroll-target="#page-overview">1 Page Overview</a></li>
+  <li><a href="#packages-and-data" id="toc-packages-and-data" class="nav-link" data-scroll-target="#packages-and-data">2. Packages and Data</a>
+  <ul class="collapse">
+  <li><a href="#packages-required" id="toc-packages-required" class="nav-link" data-scroll-target="#packages-required">2.1 Packages Required</a></li>
+  <li><a href="#data-required" id="toc-data-required" class="nav-link" data-scroll-target="#data-required">2.2 Data Required</a>
+  <ul class="collapse">
+  <li><a href="#aspatial-data" id="toc-aspatial-data" class="nav-link" data-scroll-target="#aspatial-data">2.2.1 Aspatial Data</a></li>
+  <li><a href="#geospatial-data" id="toc-geospatial-data" class="nav-link" data-scroll-target="#geospatial-data">2.2.2 Geospatial Data</a></li>
+  <li><a href="#enrichment-data" id="toc-enrichment-data" class="nav-link" data-scroll-target="#enrichment-data">2.2.3 Enrichment Data</a></li>
+  </ul></li>
+  <li><a href="#wrangling" id="toc-wrangling" class="nav-link" data-scroll-target="#wrangling">2.3 Wrangling</a>
+  <ul class="collapse">
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">2.3.1 Data Preparation</a></li>
+  <li><a href="#state-mismatch" id="toc-state-mismatch" class="nav-link" data-scroll-target="#state-mismatch">2.3.2 State Mismatch</a></li>
+  <li><a href="#state-wrangling" id="toc-state-wrangling" class="nav-link" data-scroll-target="#state-wrangling">2.3.3 State Wrangling</a></li>
+  <li><a href="#state-district-wrangling-crime" id="toc-state-district-wrangling-crime" class="nav-link" data-scroll-target="#state-district-wrangling-crime">2.3.4 State-District Wrangling (Crime)</a></li>
+  <li><a href="#state-district-wrangling-population" id="toc-state-district-wrangling-population" class="nav-link" data-scroll-target="#state-district-wrangling-population">2.3.5 State-District Wrangling (Population)</a></li>
+  <li><a href="#joining" id="toc-joining" class="nav-link" data-scroll-target="#joining">2.3.6 Joining</a></li>
+  <li><a href="#crime-per-capita-distribution" id="toc-crime-per-capita-distribution" class="nav-link" data-scroll-target="#crime-per-capita-distribution">2.3.7 Crime per Capita Distribution</a></li>
+  <li><a href="#correlation-plot" id="toc-correlation-plot" class="nav-link" data-scroll-target="#correlation-plot">2.3.8 Correlation Plot</a></li>
+  </ul></li>
+  <li><a href="#data-enrichment" id="toc-data-enrichment" class="nav-link" data-scroll-target="#data-enrichment">2.4 Data Enrichment</a>
+  <ul class="collapse">
+  <li><a href="#state-wrangling-1" id="toc-state-wrangling-1" class="nav-link" data-scroll-target="#state-wrangling-1">2.4.1 State Wrangling</a></li>
+  <li><a href="#state-district-wrangling-poverty-inequaltiy" id="toc-state-district-wrangling-poverty-inequaltiy" class="nav-link" data-scroll-target="#state-district-wrangling-poverty-inequaltiy">2.4.2 State-District Wrangling (Poverty &amp; Inequaltiy)</a></li>
+  <li><a href="#state-distrcit-wrangling-labour" id="toc-state-distrcit-wrangling-labour" class="nav-link" data-scroll-target="#state-distrcit-wrangling-labour">2.4.3 State-Distrcit Wrangling (Labour)</a></li>
+  <li><a href="#joining-1" id="toc-joining-1" class="nav-link" data-scroll-target="#joining-1">2.4.4 Joining</a></li>
+  </ul></li>
+  <li><a href="#data-selection" id="toc-data-selection" class="nav-link" data-scroll-target="#data-selection">2.5 Data Selection</a>
+  <ul class="collapse">
+  <li><a href="#visualizing-the-correlation-of-data" id="toc-visualizing-the-correlation-of-data" class="nav-link" data-scroll-target="#visualizing-the-correlation-of-data">2.5.1 Visualizing the Correlation of Data</a></li>
+  <li><a href="#final-selection" id="toc-final-selection" class="nav-link" data-scroll-target="#final-selection">2.5.2 Final Selection</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Pre-Processing</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jeffery Lau, Hei Yee Kai, Jenna Cheo </p>
+          </div>
+  </div>
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">November 17, 2024</p>
+    </div>
+  </div>
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="page-overview" class="level1">
+<h1>1 Page Overview</h1>
+<p>This page provides instructions on how to recreate the pre-processed datasets that power our Shiny Application. We have pre-processed these datasets ahead of time, which significantly reduces the loading time and complexity of the application, ensuring a smoother user experience.</p>
+</section>
+<section id="packages-and-data" class="level1">
+<h1>2. Packages and Data</h1>
+<section id="packages-required" class="level2">
+<h2 class="anchored" data-anchor-id="packages-required">2.1 Packages Required</h2>
+<p>The following will be the packages used for this study and the Shiny Application:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(sf, st, tidyverse, raster, tmap, tmaptools, ggplot2, gridExtra, spatstat, sfdep, spdep, ClustGeo, </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               ggpubr, cluster, factoextra, NbClust,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               heatmaply, corrplot, psych, GGally)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>sf: For working with simple features, a standard for spatial data in R.</li>
+<li>tidyverse: A collection of packages for data manipulation and visualization, including dplyr, tidyr, ggplot2, etc.</li>
+<li>tmap: For creating static and interactive maps.</li>
+<li>ggplot2: A powerful visualization package for creating static plots.</li>
+<li>gridExtra: For arranging multiple plots on a single page.</li>
+<li>sfdep: For spatial dependency analysis.</li>
+<li>ClustGeo: For spatial clustering analysis.</li>
+<li>cluster: For various clustering algorithms, including K-means and hierarchical clustering.</li>
+<li>factoextra: For visualizing and evaluating clustering results.</li>
+<li>NbClust: For determining the optimal number of clusters.</li>
+<li>heatmaply: For creating interactive heatmaps.</li>
+<li>corrplot: For visualizing correlation matrices.</li>
+<li>GGally: For advanced data visualization, including pair plots and correlation plots.</li>
+</ul>
+</section>
+<section id="data-required" class="level2">
+<h2 class="anchored" data-anchor-id="data-required">2.2 Data Required</h2>
+<p>There are a total of 5 aspatial datasets used in this project.</p>
+<ul>
+<li><p><a href="https://data.gov.my/data-catalogue/crime_district">Malaysia – Crime by District and Crime Type</a> from data.gov.my in csv format.</p></li>
+<li><p><a href="https://data.humdata.org/dataset/cod-ab-mys">Malaysia - Subnational Administrative Boundaries</a> with included administrative regions in shapefile format.</p></li>
+<li><p><a href="https://data.gov.my/data-catalogue/lfs_district">Malaysia – Annual Principal Labour Force Statistics by District</a> from data.gov.my in csv format.</p></li>
+<li><p><a href="https://data.gov.my/data-catalogue/hh_poverty_district">Malaysia – Poverty by Administrative District</a> from data.gov.my in csv format.</p></li>
+<li><p><a href="https://data.gov.my/data-catalogue/hh_inequality_district">Malaysia – Income Inequality by District</a> from data.gov.my in csv format.</p></li>
+<li><p><a href="https://data.gov.my/data-catalogue/population_district">Malaysia – Population by District</a> from data.gov.my in csv format.</p></li>
+</ul>
+<section id="aspatial-data" class="level3">
+<h3 class="anchored" data-anchor-id="aspatial-data">2.2.1 Aspatial Data</h3>
+<p>We start by importing the crime rate and population csv file into R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>crime_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/aspatial/crime_district.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>population_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/aspatial/population_district.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="geospatial-data" class="level3">
+<h3 class="anchored" data-anchor-id="geospatial-data">2.2.2 Geospatial Data</h3>
+<p>Next, we import the administrative (Level 2, District) regions of Malaysia.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mys_sf <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="at">dsn =</span> <span class="st">"data/geospatial/mys_adm_unhcr_20210211_shp"</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">layer =</span> <span class="st">"mys_admbnda_adm2_unhcr_20210211"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">st_transform</span>(<span class="at">crs =</span> <span class="dv">3168</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="enrichment-data" class="level3">
+<h3 class="anchored" data-anchor-id="enrichment-data">2.2.3 Enrichment Data</h3>
+<p>We will also be importing and working we several other potentially related data to crime rates in Malaysia and uncover if there is any further insights which could be extracted from their usage. The following teh details of the fields:</p>
+<ol type="1">
+<li>Poverty by District: Poverty rates by administrative district from 2019 to 2022</li>
+</ol>
+<ul>
+<li><code>poverty_absolute</code>: Proportion of households with monthly income below the Poverty Line Income (PLI)</li>
+<li><code>poverty_relative</code>: Proportion of households with monthly income below half the district median income</li>
+</ul>
+<ol start="2" type="1">
+<li>Inequality by District: Gini coefficient by administrative district from 2019 to 2022.</li>
+</ol>
+<ul>
+<li><code>gini</code>: The Gini coefficient based on the distribution of households’ gross monthly income</li>
+</ul>
+<ol start="3" type="1">
+<li>Labour Force Statistics by District: Annual principal labour force statistics at district level, including unemployment and participation rates.</li>
+</ol>
+<ul>
+<li><code>lf</code>: The number (in thousands) of employed and unemployed individuals. This figure also represents the number of people participating in the labour force.</li>
+<li><code>lf_employed</code>: The number (in thousands) of people who worked at least one hour for pay, profit or family gain, in thousands of people</li>
+<li><code>lf_unemployed</code>: The number (in thousands) of people who did not work but were looking for work or available to work</li>
+<li><code>lf_outside</code>: The number (in thousands) of people not classified as employed or unemployed, including housewives, students, early retired, disabled persons and those not interested in looking for a job</li>
+<li><code>u_rate</code>: Ratio of unemployed to labour force size</li>
+<li><code>p_rate</code>: Ratio of the labour force size to the working-age (15-64) population</li>
+<li><code>ep_ratio</code>: Ratio of the number of employed people to the working-age (15-64) population</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>poverty_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/aspatial/poverty_district.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>inequality_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/aspatial/inequality_district.csv"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>labour_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/aspatial/labour_district.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="wrangling">2.3 Wrangling</h2>
+<p>Next we shall prepare our data for analysis, which includes proper mapping of data and joining for the aspatial datasets with the geospatial dataset.</p>
+<section id="data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="data-preparation">2.3.1 Data Preparation</h3>
+<p>Before we can check the mappings we convert <code>state</code> and <code>district</code> to upper to ensure a smooth matching and join. We also extracted the year as a column since the aspatial data are all annual.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Crime</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Population</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Malaysia</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Convert state and district to upper for matching</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>crime_df <span class="ot">&lt;-</span> crime_df <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(date),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">state =</span> <span class="fu">toupper</span>(state),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">district =</span> <span class="fu">toupper</span>(district))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>population_df <span class="ot">&lt;-</span> population_df <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(date),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">state =</span> <span class="fu">toupper</span>(state),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">district =</span> <span class="fu">toupper</span>(district))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mys_sf <span class="ot">&lt;-</span> mys_sf <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">ADM1_EN =</span> <span class="fu">toupper</span>(ADM1_EN),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ADM2_EN =</span> <span class="fu">toupper</span>(ADM2_EN))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="state-mismatch" class="level3">
+<h3 class="anchored" data-anchor-id="state-mismatch">2.3.2 State Mismatch</h3>
+<p>Next we check for any mismatch on ADM1 (State-level)</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Overview</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Difference</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Unique states in crime_df:"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(crime_df<span class="sc">$</span>state)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Unique states in population_df:"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(population_df<span class="sc">$</span>state)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Unique states in mys_sf:"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(mys_sf<span class="sc">$</span>ADM1_EN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>At first glance we can see a mismatch in the length of the states.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>state_crime <span class="ot">&lt;-</span> <span class="fu">unique</span>(crime_df<span class="sc">$</span>state)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>state_sf <span class="ot">&lt;-</span> <span class="fu">unique</span>(mys_sf<span class="sc">$</span>ADM1_EN)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>missing_in_sf <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(state_crime, state_sf)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>missing_in_crime <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(state_sf, state_crime)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"States in crime_df not found in mys_sf:"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(missing_in_sf)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"States in mys_sf not found in crime_df:"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(missing_in_crime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>It seems like crime_df also have a row for the aggregated crime rates for the whole of Malaysia. Whereas W.P. LABUAN, W.P. PUTRAJAYA are not found in the spatial dataset.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="state-wrangling" class="level3">
+<h3 class="anchored" data-anchor-id="state-wrangling">2.3.3 State Wrangling</h3>
+<p>For this project we will be focusing on West Malaysia, and thus will be filtering out Sarawak, Sabah and Labuan. To address the issue identified above we will be mapping: ‘W.P. PUTRAJAYA’ -&gt; ‘KUALA LUMPUR’.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Crime</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Population</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Malaysia</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>crime_df <span class="ot">&lt;-</span> crime_df <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">'MALAYSIA'</span> <span class="sc">&amp;</span> state <span class="sc">!=</span> <span class="st">'SABAH'</span> <span class="sc">&amp;</span> state <span class="sc">!=</span> <span class="st">'SARAWAK'</span> <span class="sc">&amp;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                     district <span class="sc">!=</span> <span class="st">'ALL'</span> <span class="sc">&amp;</span> type <span class="sc">!=</span> <span class="st">'all'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">replace</span>(state, state <span class="sc">==</span> <span class="st">'W.P. KUALA LUMPUR'</span>, <span class="st">'KUALA LUMPUR'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>population_df <span class="ot">&lt;-</span> population_df <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">'SABAH'</span> <span class="sc">&amp;</span> state <span class="sc">!=</span> <span class="st">'SARAWAK'</span> <span class="sc">&amp;</span> state <span class="sc">!=</span> <span class="st">'W.P. LABUAN'</span> <span class="sc">&amp;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                 sex <span class="sc">==</span> <span class="st">"both"</span> <span class="sc">&amp;</span> age <span class="sc">==</span> <span class="st">"overall"</span> <span class="sc">&amp;</span> ethnicity <span class="sc">==</span> <span class="st">"overall"</span> ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">replace</span>(state, state <span class="sc">==</span> <span class="st">'W.P. KUALA LUMPUR'</span>, <span class="st">'KUALA LUMPUR'</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">state =</span> <span class="fu">replace</span>(state, state <span class="sc">==</span> <span class="st">'W.P. PUTRAJAYA'</span>, <span class="st">'KUALA LUMPUR'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>          dplyr<span class="sc">::</span><span class="fu">select</span>(state, district, year, population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mys_sf <span class="ot">&lt;-</span> mys_sf <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(ADM1_EN <span class="sc">!=</span> <span class="st">'W.P. LABUAN'</span> <span class="sc">&amp;</span> ADM1_EN <span class="sc">!=</span> <span class="st">'SABAH'</span> <span class="sc">&amp;</span> ADM1_EN <span class="sc">!=</span> <span class="st">'SARAWAK'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">ADM1_EN =</span> <span class="fu">replace</span>(ADM1_EN, ADM1_EN <span class="sc">==</span> <span class="st">'W.P. KUALA LUMPUR'</span>, <span class="st">'KUALA LUMPUR'</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ADM1_EN =</span> <span class="fu">replace</span>(ADM1_EN, ADM1_EN <span class="sc">==</span> <span class="st">'W.P. PUTRAJAYA'</span>, <span class="st">'KUALA LUMPUR'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>W.P. PUTRAJAYA -&gt; KUALA LUMPUR ??</p>
+<p>It is noted that W.P. PUTRAJAYA is within SELANGOR but for the ease of joining with subsequent data it will mapped under KUALA LUMPUR state</p>
+</div>
+</div>
+</section>
+<section id="state-district-wrangling-crime" class="level3">
+<h3 class="anchored" data-anchor-id="state-district-wrangling-crime">2.3.4 State-District Wrangling (Crime)</h3>
+<p>Next we will be wrangling the data on the district level, the methodology is similar as above: 1. Check difference of unique state_district 2. Address difference by mapping district not found within <code>mys_sf</code> into available districts 3. Aggregate the newly mapped variables under a similar district</p>
+<section id="state-district-mismatch" class="level4">
+<h4 class="anchored" data-anchor-id="state-district-mismatch">2.3.4.1 State-District Mismatch</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>crime_df <span class="ot">&lt;-</span> crime_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">state_district =</span> <span class="fu">paste</span>(state, district, <span class="at">sep =</span> <span class="st">"-"</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mys_sf <span class="ot">&lt;-</span> mys_sf <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">state_district =</span> <span class="fu">paste</span>(ADM1_EN, ADM2_EN, <span class="at">sep =</span> <span class="st">"-"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>state_district_crime <span class="ot">&lt;-</span> <span class="fu">unique</span>(crime_df<span class="sc">$</span>state_district)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>state_district_sf <span class="ot">&lt;-</span> <span class="fu">unique</span>(mys_sf<span class="sc">$</span>state_district)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>missing_in_sf <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(state_district_crime, state_district_sf)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>missing_in_crime <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(state_district_sf, state_district_crime)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"State-District combinations in crime_df not found in mys_sf:"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(missing_in_sf)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"State-District combinations in mys_sf not found in crime_df:"</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(missing_in_crime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That is alot of mismatch! The process involves checking the available districts in <code>mys_sf</code> and assiging the districts.</p>
+</section>
+<section id="re-mapping-districts" class="level4">
+<h4 class="anchored" data-anchor-id="re-mapping-districts">2.3.4.2 Re-Mapping Districts</h4>
+<p>After the team sat down to sort out the mapping this is the list of mapping to address the above mismatch.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>crime_df <span class="ot">&lt;-</span> crime_df <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">district =</span> <span class="fu">case_when</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"JOHOR"</span> <span class="sc">&amp;</span> district <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"ISKANDAR PUTERI"</span>, <span class="st">"NUSAJAYA"</span>, <span class="st">"JOHOR BAHRU SELATAN"</span>, <span class="st">"JOHOR BAHRU UTARA"</span>, <span class="st">"SERI ALAM"</span>) <span class="sc">~</span> <span class="st">"JOHOR BAHRU"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"NEGERI SEMBILAN"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"NILAI"</span> <span class="sc">~</span> <span class="st">"SEREMBAN"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"KEDAH"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"BANDAR BHARU"</span> <span class="sc">~</span> <span class="st">"BANDAR BAHARU"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PAHANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"CAMERON HIGHLAND"</span> <span class="sc">~</span> <span class="st">"CAMERON HIGHLANDS"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PAHANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"KUALA LIPIS"</span> <span class="sc">~</span> <span class="st">"LIPIS"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district  <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"BATU GAJAH"</span>, <span class="st">"IPOH"</span>) <span class="sc">~</span> <span class="st">"KINTA"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"GERIK"</span> <span class="sc">~</span> <span class="st">"ULU PERAK"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"MANJUNG"</span> <span class="sc">~</span> <span class="st">"MANJUNG (DINDING)"</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"PENGKALAN HULU"</span> <span class="sc">~</span> <span class="st">"ULU PERAK"</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SELAMA"</span>, <span class="st">"TAIPING"</span>) <span class="sc">~</span> <span class="st">"LARUT DAN MATANG"</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SUNGAI SIPUT"</span> <span class="sc">~</span> <span class="st">"KUALA KANGSAR"</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"TANJONG MALIM"</span>, <span class="st">"TAPAH"</span>) <span class="sc">~</span> <span class="st">"BATANG PADANG"</span>,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERLIS"</span> <span class="sc">&amp;</span> district <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"ARAU"</span>, <span class="st">"KANGAR"</span>, <span class="st">"PADANG BESAR"</span>) <span class="sc">~</span> <span class="st">"PERLIS"</span>,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI SELATAN"</span> <span class="sc">~</span> <span class="st">"S.P.SELATAN"</span>,</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI TENGAH"</span> <span class="sc">~</span> <span class="st">"S.P. TENGAH"</span>,</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI UTARA"</span> <span class="sc">~</span> <span class="st">"S.P. UTARA"</span>,</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"SELANGOR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"AMPANG JAYA"</span> <span class="sc">~</span> <span class="st">"GOMBAK"</span>,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"SELANGOR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"HULU SELANGOR"</span> <span class="sc">~</span> <span class="st">"ULU SELANGOR"</span>,</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"SELANGOR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"KAJANG"</span> <span class="sc">~</span> <span class="st">"ULU LANGAT"</span>,</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"SELANGOR"</span> <span class="sc">&amp;</span> district <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"KLANG SELATAN"</span>, <span class="st">"KLANG UTARA"</span>) <span class="sc">~</span> <span class="st">"KLANG"</span>,</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"SELANGOR"</span> <span class="sc">&amp;</span> district <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"PETALING JAYA"</span>, <span class="st">"SERDANG"</span>, <span class="st">"SG. BULOH"</span>, <span class="st">"SHAH ALAM"</span>, <span class="st">"SUBANG JAYA"</span>, <span class="st">"SUNGAI BULOH"</span>) <span class="sc">~</span> <span class="st">"PETALING"</span>,</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"KUALA LUMPUR"</span> <span class="sc">&amp;</span> district <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"BRICKFIELDS"</span>, <span class="st">"CHERAS"</span>, <span class="st">"DANG WANGI"</span>, <span class="st">"SENTUL"</span>, <span class="st">"WANGSA MAJU"</span>) <span class="sc">~</span> <span class="st">"WP. KUALA LUMPUR"</span>,</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> district</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state, district, year, category, type) <span class="sc">%&gt;%</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">crimes =</span> <span class="fu">sum</span>(crimes))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Type of issues
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>The common issue are related to translation, or districts with different names e.g.&nbsp;“PENGKALAN HULU” ~ “ULU PERAK”</li>
+<li>Some comes down to preferences e.g.&nbsp;“CAMERON HIGHLAND” ~ “CAMERON HIGHLANDS”, “MANJUNG” ~ “MANJUNG (DINDING)”,</li>
+<li>And in some cases a district may be broken down into sub-districts e.g.&nbsp;c(“PETALING JAYA”, “SERDANG”, “SG. BULOH”, “SHAH ALAM”, “SUBANG JAYA”, “SUNGAI BULOH”) ~ “PETALING”,</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="crime-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="crime-distribution">2.3.4.3 Crime Distribution</h4>
+<p>In the following we can see the distribution of crime rates (raw) on the map of West Malaysia. Note that the crime rates happens to be higher where the population is higher such as in Johor Bahru and Kuala Lumpur.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Visualization</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>og_crime_df_mys <span class="ot">&lt;-</span> crime_df <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2019</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2022</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(mys_sf, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span> <span class="ot">=</span> <span class="st">"ADM1_EN"</span>, <span class="st">"district"</span> <span class="ot">=</span> <span class="st">"ADM2_EN"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(state, district, year, category, type, crimes, geometry)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>og_crime_df_mys <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(og_crime_df_mys)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>og_crime_df_mys_grp <span class="ot">&lt;-</span> og_crime_df_mys <span class="sc">%&gt;%</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state, district) <span class="sc">%&gt;%</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_crimes =</span> <span class="fu">sum</span>(crimes)<span class="sc">/</span><span class="dv">4</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>mys_map <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(mys_sf) <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">"lightgray"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"ADM2_EN"</span>, <span class="at">size =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">"Districts (West Malaysia)"</span>,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.position =</span> <span class="st">"center"</span>,</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.size =</span> <span class="fl">1.2</span>,</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.height =</span> <span class="fl">0.45</span>, </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.width =</span> <span class="fl">0.35</span>,</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">frame =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_grid</span>(<span class="at">alpha =</span><span class="fl">0.2</span>)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>choro_map <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(og_crime_df_mys_grp) <span class="sc">+</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">"total_crimes"</span>, </span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>          <span class="at">style =</span> <span class="st">"pretty"</span>, </span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">"Oranges"</span>,</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Crimes"</span>) <span class="sc">+</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">"Crime Distribution (West Malaysia)"</span>,</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.position =</span> <span class="st">"center"</span>,</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.size =</span> <span class="fl">1.2</span>,</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.height =</span> <span class="fl">0.45</span>, </span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.width =</span> <span class="fl">0.35</span>,</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">frame =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">type=</span><span class="st">"8star"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>)) <span class="sc">+</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_grid</span>(<span class="at">alpha =</span><span class="fl">0.2</span>)</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_arrange</span>(choro_map, mys_map, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Missing Data (POKOK SENA)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note the missing data in POKOK SENA in <code>crime_df</code>, which we will be rectifying in the subsequent join with the crime aggregated by KEDAH state</p>
+</div>
+</div>
+</section>
+</section>
+<section id="state-district-wrangling-population" class="level3">
+<h3 class="anchored" data-anchor-id="state-district-wrangling-population">2.3.5 State-District Wrangling (Population)</h3>
+<p>The crime data provided is not sufficient to paint an accurate picture of the crime patterns in Malaysia as it is heavily skewed towards places with higher population, this will not be ideal for our analysis, hence we will be importing Population by district to adjust the crime accordingly.</p>
+<section id="state-district-mismatch-1" class="level4">
+<h4 class="anchored" data-anchor-id="state-district-mismatch-1">2.3.5.1 State-District Mismatch</h4>
+<p>The data for population is only available from 2020 - 2024. Since 2019 is missing from data set, we will do a best effort mapping where year: 2020 -&gt; 2019.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>population_row <span class="ot">&lt;-</span> population_df <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2019</span>) </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>population_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(population_df, population_row) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state_district =</span> <span class="fu">paste</span>(state, district, <span class="at">sep =</span> <span class="st">"-"</span>))</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(population_df<span class="sc">$</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next we check mismatch on the state-district.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>state_district_population <span class="ot">&lt;-</span> <span class="fu">unique</span>(population_df<span class="sc">$</span>state_district)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>missing_in_sf <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(state_district_population, state_district_sf)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>missing_in_population <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(state_district_sf, state_district_population)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"State-District combinations in population_df not found in mys_sf:"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(missing_in_sf)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"State-District combinations in mys_sf not found in population_df:"</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(missing_in_population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="re-mapping-districts-1" class="level4">
+<h4 class="anchored" data-anchor-id="re-mapping-districts-1">2.3.5.2 Re-Mapping Districts</h4>
+<p>We employed the similar methodology to map the Population data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>population_df <span class="ot">&lt;-</span> population_df <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">district =</span> <span class="fu">case_when</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"JOHOR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"KULAI"</span> <span class="sc">~</span> <span class="st">"KULAIJAYA"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"JOHOR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"TANGKAK"</span> <span class="sc">~</span> <span class="st">"LEDANG"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"KELANTAN"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"KECIL LOJING"</span> <span class="sc">~</span> <span class="st">"GUA MUSANG"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PAHANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"CAMERON HIGHLAND"</span> <span class="sc">~</span> <span class="st">"CAMERON HIGHLANDS"</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"HULU PERAK"</span> <span class="sc">~</span> <span class="st">"ULU PERAK"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"BAGAN DATUK"</span> <span class="sc">~</span> <span class="st">"HILIR PERAK"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"MANJUNG"</span> <span class="sc">~</span> <span class="st">"MANJUNG (DINDING)"</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"MUALLIM"</span> <span class="sc">~</span> <span class="st">"BATANG PADANG"</span>,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SELAMA"</span> <span class="sc">~</span> <span class="st">"LARUT DAN MATANG"</span>,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI SELATAN"</span> <span class="sc">~</span> <span class="st">"S.P.SELATAN"</span>,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI TENGAH"</span> <span class="sc">~</span> <span class="st">"S.P. TENGAH"</span>,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI UTARA"</span> <span class="sc">~</span> <span class="st">"S.P. UTARA"</span>,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SP SELATAN"</span> <span class="sc">~</span> <span class="st">"S.P.SELATAN"</span>,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SP TENGAH"</span> <span class="sc">~</span> <span class="st">"S.P. TENGAH"</span>,</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SP UTARA"</span> <span class="sc">~</span> <span class="st">"S.P. UTARA"</span>,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"TERENGGANU"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"KUALA NERUS"</span> <span class="sc">~</span> <span class="st">"KUALA TERENGGANU"</span>,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"KUALA LUMPUR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"W.P. KUALA LUMPUR"</span> <span class="sc">~</span> <span class="st">"WP. KUALA LUMPUR"</span>,</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> district</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state, district, year) <span class="sc">%&gt;%</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">population =</span> <span class="fu">sum</span>(population))</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>population_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="population-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="population-distribution">2.3.5.3 Population Distribution</h4>
+<p>The following is a quick visualization of the population data in West Malaysia.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Visualization</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>population_df_mys <span class="ot">&lt;-</span> population_df <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(mys_sf, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span> <span class="ot">=</span> <span class="st">"ADM1_EN"</span>, <span class="st">"district"</span> <span class="ot">=</span> <span class="st">"ADM2_EN"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(state, district, year, population, geometry)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>population_df_mys <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(population_df_mys)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>population_df_mys_grp <span class="ot">&lt;-</span> population_df_mys <span class="sc">%&gt;%</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state, district) <span class="sc">%&gt;%</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_crimes =</span> <span class="fu">sum</span>(population)<span class="sc">/</span><span class="dv">4</span>)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>mys_map <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(mys_sf) <span class="sc">+</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>() <span class="sc">+</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"ADM2_EN"</span>, <span class="at">size =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">"Districts (West Malaysia)"</span>,</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.position =</span> <span class="st">"center"</span>,</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.size =</span> <span class="fl">1.2</span>,</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.height =</span> <span class="fl">0.45</span>, </span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.width =</span> <span class="fl">0.35</span>,</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">frame =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_grid</span>(<span class="at">alpha =</span><span class="fl">0.2</span>)</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>choro_map <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(population_df_mys_grp) <span class="sc">+</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">"total_crimes"</span>, </span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">style =</span> <span class="st">"pretty"</span>, </span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">"Blues"</span>,</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Crimes"</span>) <span class="sc">+</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">"Population Distribution (West Malaysia)"</span>,</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.position =</span> <span class="st">"center"</span>,</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.size =</span> <span class="fl">1.2</span>,</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.height =</span> <span class="fl">0.45</span>, </span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.width =</span> <span class="fl">0.35</span>,</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>            <span class="at">frame =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">type=</span><span class="st">"8star"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>)) <span class="sc">+</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_grid</span>(<span class="at">alpha =</span><span class="fl">0.2</span>)</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_arrange</span>(choro_map, mys_map, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Similarity in Observation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We can note that the districts with more crime tend to have a higher population we suggest it is positively correlated. Hence for a more accurate representation of crime rate we need to adjust the crimes to per captia (1000) for the districts.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="joining" class="level3">
+<h3 class="anchored" data-anchor-id="joining">2.3.6 Joining</h3>
+<p>We will next perform join of the data on <code>crime_df</code> with <code>population_df</code> to normalize our crime data</p>
+<section id="join-with-population-data" class="level4">
+<h4 class="anchored" data-anchor-id="join-with-population-data">2.3.6.1 Join with Population Data</h4>
+<p>Here we compute the crimes per 1000 capita to ensure the data is normalized</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>crime_df_mys <span class="ot">&lt;-</span> crime_df <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2019</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2022</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(population_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"district"</span>, <span class="st">"year"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">crimes_pc =</span> crimes<span class="sc">/</span>population) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(state, district, year, category, type, crimes, crimes_pc, population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="filling-for-pokok-sena-district" class="level4">
+<h4 class="anchored" data-anchor-id="filling-for-pokok-sena-district">2.3.6.2 Filling for <code>POKOK SENA</code> District</h4>
+<p>Given the missing data for <code>POKOK SENA</code>, we will be getting the state average for the district in this case the state of <code>KEDAH</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pokok_sena_rows <span class="ot">&lt;-</span> crime_df_mys <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"KEDAH"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state, year, category, type) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">crimes =</span> <span class="fu">mean</span>(crimes),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">crimes_pc =</span> <span class="fu">mean</span>(crimes_pc),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">population =</span> <span class="fu">mean</span>(population)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">district =</span> <span class="st">"POKOK SENA"</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>pokok_sena_rows</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>crime_df_mys <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(crime_df_mys, pokok_sena_rows)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="join-with-district-boundary" class="level4">
+<h4 class="anchored" data-anchor-id="join-with-district-boundary">2.3.6.3 Join with District Boundary</h4>
+<p>We finish off the join with a join with our spatial dataset <code>mys_sf</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>crime_df_mys <span class="ot">&lt;-</span> crime_df_mys <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(mys_sf, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span> <span class="ot">=</span> <span class="st">"ADM1_EN"</span>, <span class="st">"district"</span> <span class="ot">=</span> <span class="st">"ADM2_EN"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(state, district, year, category, type, crimes, crimes_pc, population, geometry)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>crime_df_mys <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(crime_df_mys)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>crime_df_mys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="crime-per-capita-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="crime-per-capita-distribution">2.3.7 Crime per Capita Distribution</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>crime_df_mys_grp <span class="ot">&lt;-</span> crime_df_mys <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state, district) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_crimes_pc =</span> <span class="fu">sum</span>(crimes_pc)<span class="sc">/</span><span class="dv">4</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>og_choro_map <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(og_crime_df_mys_grp) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">"total_crimes"</span>, </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">n =</span> <span class="dv">5</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">style =</span> <span class="st">"equal"</span>, </span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">"Oranges"</span>,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Crimes"</span>) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">"Crime Distribution (West Malaysia)"</span>,</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.position =</span> <span class="st">"center"</span>,</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.size =</span> <span class="fl">1.2</span>,</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.height =</span> <span class="fl">0.45</span>, </span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.width =</span> <span class="fl">0.35</span>,</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">frame =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">type=</span><span class="st">"8star"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>)) <span class="sc">+</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_grid</span>(<span class="at">alpha =</span><span class="fl">0.2</span>)</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>choro_map <span class="ot">&lt;-</span> <span class="fu">tm_shape</span>(crime_df_mys_grp) <span class="sc">+</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="st">"total_crimes_pc"</span>, </span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>          <span class="at">n =</span> <span class="dv">5</span>,</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">style =</span> <span class="st">"equal"</span>, </span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">palette =</span> <span class="st">"Oranges"</span>,</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Crimes"</span>) <span class="sc">+</span></span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">"Crime per Capita Distribution"</span>,</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.position =</span> <span class="st">"center"</span>,</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.size =</span> <span class="fl">1.2</span>,</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.height =</span> <span class="fl">0.45</span>, </span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.width =</span> <span class="fl">0.35</span>,</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>            <span class="at">frame =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">type=</span><span class="st">"8star"</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>)) <span class="sc">+</span></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_grid</span>(<span class="at">alpha =</span><span class="fl">0.2</span>)</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_arrange</span>(og_choro_map, choro_map, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Much better!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note how much more insights we can extract from our adjusted crime choro plot. The district with population still seem to be higher in crime however we can also identify other clusters i.e.&nbsp;several cold spots in Kelantan etc.</p>
+</div>
+</div>
+</section>
+<section id="correlation-plot" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-plot">2.3.8 Correlation Plot</h3>
+<p>Next we take a quick look at how correlated the data are with across the various types of crimes</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>piv_crime_df_mys <span class="ot">&lt;-</span> crime_df_mys <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cat_type =</span> <span class="fu">paste</span>(category, type, <span class="at">sep =</span> <span class="st">"-"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>category, <span class="sc">-</span>type, <span class="sc">-</span>crimes, <span class="sc">-</span>population) <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> cat_type,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> crimes_pc,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_fill =</span> <span class="dv">0</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(<span class="fu">st_drop_geometry</span>(piv_crime_df_mys)[, <span class="dv">4</span><span class="sc">:</span><span class="dv">15</span>]),</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">lower =</span> <span class="st">"ellipse"</span>, </span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">upper =</span> <span class="st">"number"</span>,</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.pos =</span> <span class="st">"lt"</span>,</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">diag =</span> <span class="st">"l"</span>,</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.srt =</span> <span class="dv">45</span>, </span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.cex =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>During the EDA we have noted that some crimes such as <code>robbery_gang_armed</code> tend are typically really low in record. Hence to further narrow our subsequent analysis we will group robbery as one category and vehicle theft as the other since they are highly correlated.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>piv_crime_df_mys <span class="ot">&lt;-</span> piv_crime_df_mys <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">robbery =</span> <span class="st">`</span><span class="at">assault-robbery_gang_armed</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">assault-robbery_gang_unarmed</span><span class="st">`</span> <span class="sc">+</span> </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">`</span><span class="at">assault-robbery_solo_armed</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">assault-robbery_solo_unarmed</span><span class="st">`</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">vehicle_theft =</span> <span class="st">`</span><span class="at">property-theft_vehicle_lorry</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">property-theft_vehicle_motorcar</span><span class="st">`</span> <span class="sc">+</span> </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                    <span class="st">`</span><span class="at">property-theft_vehicle_motorcycle</span><span class="st">`</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">assault-robbery_gang_armed</span><span class="st">`</span>, <span class="sc">-</span><span class="st">`</span><span class="at">assault-robbery_gang_unarmed</span><span class="st">`</span>, </span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>         <span class="sc">-</span><span class="st">`</span><span class="at">assault-robbery_solo_armed</span><span class="st">`</span>, <span class="sc">-</span><span class="st">`</span><span class="at">assault-robbery_solo_unarmed</span><span class="st">`</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>         <span class="sc">-</span><span class="st">`</span><span class="at">property-theft_vehicle_lorry</span><span class="st">`</span>, <span class="sc">-</span><span class="st">`</span><span class="at">property-theft_vehicle_motorcar</span><span class="st">`</span>, </span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>         <span class="sc">-</span><span class="st">`</span><span class="at">property-theft_vehicle_motorcycle</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span><span class="fu">str_remove</span>(., <span class="st">"^assault-|^property-"</span>))</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>piv_crime_df_mys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The final crime type correlation matrix should look like the following.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(<span class="fu">st_drop_geometry</span>(piv_crime_df_mys)[, <span class="dv">4</span><span class="sc">:</span><span class="dv">10</span>]),</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">lower =</span> <span class="st">"ellipse"</span>, </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">upper =</span> <span class="st">"number"</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.pos =</span> <span class="st">"lt"</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">diag =</span> <span class="st">"l"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.srt =</span> <span class="dv">45</span>, </span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.cex =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Initial Analysis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Across the board it seems like only <code>robbery</code> have high correlation with <code>vehicle_theft</code>. However we will not be dropping either as they are key variables we would like extract insights from.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="data-enrichment" class="level2">
+<h2 class="anchored" data-anchor-id="data-enrichment">2.4 Data Enrichment</h2>
+<p>To further enrich our analysis we will incoporate several socio-economic data which may potentially influence/affect crime rates such labour participation rates, poverty and income inequality by district</p>
+<section id="state-wrangling-1" class="level3">
+<h3 class="anchored" data-anchor-id="state-wrangling-1">2.4.1 State Wrangling</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Unique states in mys_sf:"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(mys_sf<span class="sc">$</span>ADM1_EN)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Unique states in poverty_df:"</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(poverty_df<span class="sc">$</span>state)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Unique states in inequality_df:"</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(inequality_df<span class="sc">$</span>state)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Unique states in labour_df:"</span>)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(labour_df<span class="sc">$</span>state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Similarly we prep the data by transforming the data and filtering out east Malaysia</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>poverty_df <span class="ot">&lt;-</span> poverty_df <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(date),</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">state =</span> <span class="fu">toupper</span>(state),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">district =</span> <span class="fu">toupper</span>(district)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">'SABAH'</span> <span class="sc">&amp;</span> state <span class="sc">!=</span> <span class="st">'SARAWAK'</span> <span class="sc">&amp;</span> state <span class="sc">!=</span> <span class="st">'W.P. LABUAN'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">replace</span>(state, state <span class="sc">==</span> <span class="st">'W.P. KUALA LUMPUR'</span>, <span class="st">'KUALA LUMPUR'</span>),</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">state =</span> <span class="fu">replace</span>(state, state <span class="sc">==</span> <span class="st">'W.P. PUTRAJAYA'</span>, <span class="st">'KUALA LUMPUR'</span>))</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>inequality_df <span class="ot">&lt;-</span> inequality_df <span class="sc">%&gt;%</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(date),</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">state =</span> <span class="fu">toupper</span>(state),</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">district =</span> <span class="fu">toupper</span>(district)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">'SABAH'</span> <span class="sc">&amp;</span> state <span class="sc">!=</span> <span class="st">'SARAWAK'</span> <span class="sc">&amp;</span> state <span class="sc">!=</span> <span class="st">'W.P. LABUAN'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">replace</span>(state, state <span class="sc">==</span> <span class="st">'W.P. KUALA LUMPUR'</span>, <span class="st">'KUALA LUMPUR'</span>),</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">state =</span> <span class="fu">replace</span>(state, state <span class="sc">==</span> <span class="st">'W.P. PUTRAJAYA'</span>, <span class="st">'KUALA LUMPUR'</span>))</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>labour_df <span class="ot">&lt;-</span> labour_df <span class="sc">%&gt;%</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(date),</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">state =</span> <span class="fu">toupper</span>(state),</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">district =</span> <span class="fu">toupper</span>(district)) <span class="sc">%&gt;%</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>          <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">'SABAH'</span> <span class="sc">&amp;</span> state <span class="sc">!=</span> <span class="st">'SARAWAK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Unique states &amp; years in mys_sf:"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(mys_sf<span class="sc">$</span>ADM1_EN))</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Unique states &amp; years in poverty_df:"</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(poverty_df<span class="sc">$</span>state))</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(poverty_df<span class="sc">$</span>year))</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Unique states &amp; years in inequality_df:"</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(inequality_df<span class="sc">$</span>state))</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(inequality_df<span class="sc">$</span>year))</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Unique states &amp; years in labour_df:"</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(labour_df<span class="sc">$</span>state))</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">unique</span>(labour_df<span class="sc">$</span>year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Critical Data Issues
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>From the data we identified 2 issues: 1. Poverty and Inequality data is missing years 2020 and 2021 2. Labour data is missing PERLIS, KUALA LUMPUR and PUTRAJAYA</p>
+</div>
+</div>
+</section>
+<section id="state-district-wrangling-poverty-inequaltiy" class="level3">
+<h3 class="anchored" data-anchor-id="state-district-wrangling-poverty-inequaltiy">2.4.2 State-District Wrangling (Poverty &amp; Inequaltiy)</h3>
+<section id="filling-year-data" class="level4">
+<h4 class="anchored" data-anchor-id="filling-year-data">2.4.2.1 Filling Year Data</h4>
+<p>Since years 2020 and 2021 are missing from data set, we will map to prior or the next year:</p>
+<ul>
+<li><p>2020 -&gt; 2019</p></li>
+<li><p>2021 -&gt; 2022</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>poverty_rows <span class="ot">&lt;-</span> poverty_df <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">ifelse</span>(year <span class="sc">==</span> <span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2021</span>))</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>poverty_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(poverty_df, poverty_rows)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(poverty_df<span class="sc">$</span>year)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>inequality_rows <span class="ot">&lt;-</span> inequality_df <span class="sc">%&gt;%</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">ifelse</span>(year <span class="sc">==</span> <span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2021</span>))</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>inequality_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(inequality_df, inequality_rows)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(inequality_df<span class="sc">$</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="state-district-mismatch-2" class="level4">
+<h4 class="anchored" data-anchor-id="state-district-mismatch-2">2.4.2.2 State-District Mismatch</h4>
+<p>Similarly we will have to wrangle for District level too.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>poverty_df <span class="ot">&lt;-</span> poverty_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">state_district =</span> <span class="fu">paste</span>(state, district, <span class="at">sep =</span> <span class="st">"-"</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>inequality_df <span class="ot">&lt;-</span> inequality_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">state_district =</span> <span class="fu">paste</span>(state, district, <span class="at">sep =</span> <span class="st">"-"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Since the data for inequality comes from the same ministry and the districts are the same we will only be checking for Poverty.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>state_district_poverty <span class="ot">&lt;-</span> <span class="fu">unique</span>(poverty_df<span class="sc">$</span>state_district)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>missing_in_sf <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(state_district_poverty, state_district_sf)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>missing_in_poverty <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(state_district_sf, state_district_poverty)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"State-District combinations in poverty_df not found in mys_sf:"</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(missing_in_sf)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"State-District combinations in mys_sf not found in poverty_df:"</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(missing_in_poverty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="re-mapping-districts-2" class="level4">
+<h4 class="anchored" data-anchor-id="re-mapping-districts-2">2.4.2.3 Re-Mapping Districts</h4>
+<p>This step is getting tedious, but still, very crucial.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>poverty_df <span class="ot">&lt;-</span> poverty_df <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">district =</span> <span class="fu">case_when</span>(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"JOHOR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"KULAI"</span> <span class="sc">~</span> <span class="st">"KULAIJAYA"</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"JOHOR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"TANGKAK"</span> <span class="sc">~</span> <span class="st">"LEDANG"</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"KELANTAN"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"KECIL LOJING"</span> <span class="sc">~</span> <span class="st">"GUA MUSANG"</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"HULU PERAK"</span> <span class="sc">~</span> <span class="st">"ULU PERAK"</span>,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"BAGAN DATUK"</span> <span class="sc">~</span> <span class="st">"HILIR PERAK"</span>,</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"MANJUNG"</span> <span class="sc">~</span> <span class="st">"MANJUNG (DINDING)"</span>,</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"MUALLIM"</span> <span class="sc">~</span> <span class="st">"BATANG PADANG"</span>,</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SELAMA"</span> <span class="sc">~</span> <span class="st">"LARUT DAN MATANG"</span>,</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI SELATAN"</span> <span class="sc">~</span> <span class="st">"S.P.SELATAN"</span>,</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI TENGAH"</span> <span class="sc">~</span> <span class="st">"S.P. TENGAH"</span>,</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI UTARA"</span> <span class="sc">~</span> <span class="st">"S.P. UTARA"</span>,</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"TERENGGANU"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"KUALA NERUS"</span> <span class="sc">~</span> <span class="st">"KUALA TERENGGANU"</span>,</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"KUALA LUMPUR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"W.P. KUALA LUMPUR"</span> <span class="sc">~</span> <span class="st">"WP. KUALA LUMPUR"</span>,</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> district</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state, district, year) <span class="sc">%&gt;%</span></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">poverty_absolute =</span> <span class="fu">mean</span>(poverty_absolute),</span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">poverty_relative =</span> <span class="fu">mean</span>(poverty_relative))</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>poverty_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>inequality_df <span class="ot">&lt;-</span> inequality_df <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">district =</span> <span class="fu">case_when</span>(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"JOHOR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"KULAI"</span> <span class="sc">~</span> <span class="st">"KULAIJAYA"</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"JOHOR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"TANGKAK"</span> <span class="sc">~</span> <span class="st">"LEDANG"</span>,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"KELANTAN"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"KECIL LOJING"</span> <span class="sc">~</span> <span class="st">"GUA MUSANG"</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"HULU PERAK"</span> <span class="sc">~</span> <span class="st">"ULU PERAK"</span>,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"BAGAN DATUK"</span> <span class="sc">~</span> <span class="st">"HILIR PERAK"</span>,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"MANJUNG"</span> <span class="sc">~</span> <span class="st">"MANJUNG (DINDING)"</span>,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"MUALLIM"</span> <span class="sc">~</span> <span class="st">"BATANG PADANG"</span>,</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SELAMA"</span> <span class="sc">~</span> <span class="st">"LARUT DAN MATANG"</span>,</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI SELATAN"</span> <span class="sc">~</span> <span class="st">"S.P.SELATAN"</span>,</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI TENGAH"</span> <span class="sc">~</span> <span class="st">"S.P. TENGAH"</span>,</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI UTARA"</span> <span class="sc">~</span> <span class="st">"S.P. UTARA"</span>,</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"TERENGGANU"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"KUALA NERUS"</span> <span class="sc">~</span> <span class="st">"KUALA TERENGGANU"</span>,</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"KUALA LUMPUR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"W.P. KUALA LUMPUR"</span> <span class="sc">~</span> <span class="st">"WP. KUALA LUMPUR"</span>,</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> district</span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state, district, year) <span class="sc">%&gt;%</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">gini =</span> <span class="fu">mean</span>(gini))</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>inequality_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="state-distrcit-wrangling-labour" class="level3">
+<h3 class="anchored" data-anchor-id="state-distrcit-wrangling-labour">2.4.3 State-Distrcit Wrangling (Labour)</h3>
+<section id="state-district-mismatch-3" class="level4">
+<h4 class="anchored" data-anchor-id="state-district-mismatch-3">2.4.3.1 State-District Mismatch</h4>
+<p>No change as with above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>labour_df <span class="ot">&lt;-</span> labour_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">state_district =</span> <span class="fu">paste</span>(state, district, <span class="at">sep =</span> <span class="st">"-"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>state_district_labour <span class="ot">&lt;-</span> <span class="fu">unique</span>(labour_df<span class="sc">$</span>state_district)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>missing_in_sf <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(state_district_labour, state_district_sf)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>missing_in_labour <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(state_district_sf, state_district_labour)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"State-District combinations in labour_df not found in mys_sf:"</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(missing_in_sf)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"State-District combinations in mys_sf not found in labour_df:"</span>)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(missing_in_labour)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="re-mapping-districts-3" class="level4">
+<h4 class="anchored" data-anchor-id="re-mapping-districts-3">2.4.3.2 Re-Mapping Districts</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>labour_df <span class="ot">&lt;-</span> labour_df <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">district =</span> <span class="fu">case_when</span>(</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"JOHOR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"KULAI"</span> <span class="sc">~</span> <span class="st">"KULAIJAYA"</span>,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"JOHOR"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"TANGKAK"</span> <span class="sc">~</span> <span class="st">"LEDANG"</span>,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"HULU PERAK"</span> <span class="sc">~</span> <span class="st">"ULU PERAK"</span>,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PERAK"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"MANJUNG"</span> <span class="sc">~</span> <span class="st">"MANJUNG (DINDING)"</span>,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI SELATAN"</span> <span class="sc">~</span> <span class="st">"S.P.SELATAN"</span>,</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI TENGAH"</span> <span class="sc">~</span> <span class="st">"S.P. TENGAH"</span>,</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    state <span class="sc">==</span> <span class="st">"PULAU PINANG"</span> <span class="sc">&amp;</span> district <span class="sc">==</span> <span class="st">"SEBERANG PERAI UTARA"</span> <span class="sc">~</span> <span class="st">"S.P. UTARA"</span>,</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> district</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state, district, year) <span class="sc">%&gt;%</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">lf =</span> <span class="fu">mean</span>(lf),</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">lf_employed =</span> <span class="fu">mean</span>(lf_employed),</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">lf_unemployed =</span> <span class="fu">mean</span>(lf_unemployed),</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">lf_outside =</span> <span class="fu">mean</span>(lf_outside),</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">p_rate =</span> <span class="fu">mean</span>(p_rate),</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">u_rate =</span> <span class="fu">mean</span>(u_rate),</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">ep_ratio =</span> <span class="fu">mean</span>(ep_ratio))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Missing labour data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>However we do not have labour data for the following state-districts, hence we will be using the national average for:</p>
+<ol type="1">
+<li><p>“PERLIS-PERLIS”</p></li>
+<li><p>“KUALA LUMPUR-WP. KUALA LUMPUR”</p></li>
+<li><p>“KUALA LUMPUR-W.P. PUTRAJAYA”</p></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="joining-1" class="level3">
+<h3 class="anchored" data-anchor-id="joining-1">2.4.4 Joining</h3>
+<section id="join-with-poverty-inequality-and-labour" class="level4">
+<h4 class="anchored" data-anchor-id="join-with-poverty-inequality-and-labour">2.4.4.1 Join with Poverty, Inequality and Labour</h4>
+<p>We join the other aspatial data with our spatial crime dataframe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>piv_full_df_mys <span class="ot">&lt;-</span> piv_crime_df_mys <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(poverty_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"district"</span>, <span class="st">"year"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(inequality_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"district"</span>, <span class="st">"year"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(labour_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"district"</span>, <span class="st">"year"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(population_df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"district"</span>, <span class="st">"year"</span>))</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>piv_full_df_mys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-subsitution-labour" class="level4">
+<h4 class="anchored" data-anchor-id="data-subsitution-labour">2.4.4.2 Data Subsitution (Labour)</h4>
+<p>Similar to crime, labour force will also need to be adjusted to the districts population for a more accurate representation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>piv_full_df_mys <span class="ot">&lt;-</span> piv_full_df_mys <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lf =</span> lf<span class="sc">/</span>population,</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">lf_employed =</span> lf_employed<span class="sc">/</span>population,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">lf_unemployed =</span> lf_unemployed<span class="sc">/</span>population,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">lf_outside =</span> lf_outside<span class="sc">/</span>population) <span class="sc">%&gt;%</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here we will be substituting the national average for the previously highlighted missing data from the labour dataset</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>target_states <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"PERLIS"</span>, <span class="st">"KUALA LUMPUR"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>target_districts <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"PERLIS"</span>, <span class="st">"WP. KUALA LUMPUR"</span>, <span class="st">"W.P. PUTRAJAYA"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>avg_values <span class="ot">&lt;-</span> piv_full_df_mys <span class="sc">%&gt;%</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(state <span class="sc">%in%</span> target_states <span class="sc">&amp;</span> district <span class="sc">%in%</span> target_districts)) <span class="sc">%&gt;%</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_lf =</span> <span class="fu">mean</span>(lf, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_lf_employed =</span> <span class="fu">mean</span>(lf_employed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_lf_unemployed =</span> <span class="fu">mean</span>(lf_unemployed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_lf_outside =</span> <span class="fu">mean</span>(lf_outside, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_p_rate =</span> <span class="fu">mean</span>(p_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_u_rate =</span> <span class="fu">mean</span>(u_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_ep_ratio =</span> <span class="fu">mean</span>(ep_ratio, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>piv_full_df_mys <span class="ot">&lt;-</span> piv_full_df_mys <span class="sc">%&gt;%</span></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">lf =</span> <span class="fu">ifelse</span>(state <span class="sc">%in%</span> target_states <span class="sc">&amp;</span> district <span class="sc">%in%</span> target_districts <span class="sc">&amp;</span> <span class="fu">is.na</span>(lf), avg_values<span class="sc">$</span>avg_lf, lf),</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">lf_employed =</span> <span class="fu">ifelse</span>(state <span class="sc">%in%</span> target_states <span class="sc">&amp;</span> district <span class="sc">%in%</span> target_districts <span class="sc">&amp;</span> <span class="fu">is.na</span>(lf_employed), avg_values<span class="sc">$</span>avg_lf_employed, lf_employed),</span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">lf_unemployed =</span> <span class="fu">ifelse</span>(state <span class="sc">%in%</span> target_states <span class="sc">&amp;</span> district <span class="sc">%in%</span> target_districts <span class="sc">&amp;</span> <span class="fu">is.na</span>(lf_unemployed), avg_values<span class="sc">$</span>avg_lf_unemployed, lf_unemployed),</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">lf_outside =</span> <span class="fu">ifelse</span>(state <span class="sc">%in%</span> target_states <span class="sc">&amp;</span> district <span class="sc">%in%</span> target_districts <span class="sc">&amp;</span> <span class="fu">is.na</span>(lf_outside), avg_values<span class="sc">$</span>avg_lf_outside, lf_outside),</span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_rate =</span> <span class="fu">ifelse</span>(state <span class="sc">%in%</span> target_states <span class="sc">&amp;</span> district <span class="sc">%in%</span> target_districts <span class="sc">&amp;</span> <span class="fu">is.na</span>(p_rate), avg_values<span class="sc">$</span>avg_p_rate, p_rate),</span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">u_rate =</span> <span class="fu">ifelse</span>(state <span class="sc">%in%</span> target_states <span class="sc">&amp;</span> district <span class="sc">%in%</span> target_districts <span class="sc">&amp;</span> <span class="fu">is.na</span>(u_rate), avg_values<span class="sc">$</span>avg_u_rate, u_rate),</span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">ep_ratio =</span> <span class="fu">ifelse</span>(state <span class="sc">%in%</span> target_states <span class="sc">&amp;</span> district <span class="sc">%in%</span> target_districts <span class="sc">&amp;</span> <span class="fu">is.na</span>(ep_ratio), avg_values<span class="sc">$</span>avg_ep_ratio, ep_ratio)</span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="aggregate-all-years" class="level4">
+<h4 class="anchored" data-anchor-id="aggregate-all-years">2.4.4.3 Aggregate all Years</h4>
+<p>We will keep the year for filtering our application, hence we will also create an aggregate the data across the 4 years (2019 - 2022)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>piv_full_df_mys_agg <span class="ot">&lt;-</span> piv_full_df_mys <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(state, district) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">year =</span> <span class="dv">0</span>,</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">causing_injury =</span> <span class="fu">mean</span>(causing_injury),</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">murder =</span> <span class="fu">mean</span>(murder),</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">rape =</span> <span class="fu">mean</span>(rape),</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">robbery =</span> <span class="fu">mean</span>(robbery),</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">break_in =</span> <span class="fu">mean</span>(break_in),</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">theft_other =</span> <span class="fu">mean</span>(theft_other),</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">vehicle_theft =</span> <span class="fu">mean</span>(vehicle_theft),</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">poverty_absolute =</span> <span class="fu">mean</span>(poverty_absolute),</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">poverty_relative =</span> <span class="fu">mean</span>(poverty_relative),</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">gini =</span> <span class="fu">mean</span>(gini),</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">lf =</span> <span class="fu">mean</span>(lf),</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">lf_employed =</span> <span class="fu">mean</span>(lf_employed),</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">lf_unemployed =</span> <span class="fu">mean</span>(lf_unemployed),</span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">lf_outside =</span> <span class="fu">mean</span>(lf_outside),</span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">p_rate =</span> <span class="fu">mean</span>(p_rate),</span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">u_rate =</span> <span class="fu">mean</span>(u_rate),</span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">ep_ratio =</span> <span class="fu">mean</span>(ep_ratio))</span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>piv_full_df_mys <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(piv_full_df_mys, piv_full_df_mys_agg)</span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(piv_full_df_mys<span class="sc">$</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="data-selection" class="level2">
+<h2 class="anchored" data-anchor-id="data-selection">2.5 Data Selection</h2>
+<p>To simplify our subsequent analysis and fine tune our clustering we will be checking for any highly correlated non-crime data and remove them for clustering.</p>
+<section id="visualizing-the-correlation-of-data" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-the-correlation-of-data">2.5.1 Visualizing the Correlation of Data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(<span class="fu">st_drop_geometry</span>(piv_full_df_mys <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">0</span>))[, <span class="dv">4</span><span class="sc">:</span><span class="dv">20</span>]),</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">lower =</span> <span class="st">"ellipse"</span>, </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">upper =</span> <span class="st">"number"</span>,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.pos =</span> <span class="st">"lt"</span>,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">diag =</span> <span class="st">"l"</span>,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.srt =</span> <span class="dv">45</span>,  <span class="co"># Slant the labels by 45 degrees</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.cex =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="final-selection" class="level3">
+<h3 class="anchored" data-anchor-id="final-selection">2.5.2 Final Selection</h3>
+<p>Since the variable</p>
+<ol type="1">
+<li><p><code>ep_ratio</code> is highly correlated (&gt;0.8) with <code>lf</code>, <code>lf_employed</code>, <code>lf_outside</code> and <code>p_rate</code> we can drop them from the dataframe. (Employment ratio is much more intutive too)</p></li>
+<li><p><code>u_rate</code> is highly correlated (&gt;0.8) with <code>lf_unemployed</code> we can drop it too.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>piv_df_mys <span class="ot">&lt;-</span> piv_full_df_mys <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">state_district =</span> <span class="fu">str_to_title</span>(<span class="fu">paste</span>(state, district, <span class="at">sep =</span> <span class="st">"-"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>lf, <span class="sc">-</span>lf_employed, <span class="sc">-</span>lf_unemployed, <span class="sc">-</span>lf_outside, <span class="sc">-</span>p_rate) <span class="sc">%&gt;%</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span><span class="fu">str_replace_all</span>(., <span class="fu">c</span>(<span class="st">"ep_ratio"</span> <span class="ot">=</span> <span class="st">"employment_ratio"</span>, <span class="st">"u_rate"</span> <span class="ot">=</span> <span class="st">"unemployment_rate"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(state_district, <span class="fu">everything</span>())</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(piv_df_mys)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(<span class="fu">st_drop_geometry</span>(piv_df_mys <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">0</span>))[, <span class="dv">5</span><span class="sc">:</span><span class="dv">16</span>]),</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">lower =</span> <span class="st">"ellipse"</span>, </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">upper =</span> <span class="st">"number"</span>,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.pos =</span> <span class="st">"lt"</span>,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">diag =</span> <span class="st">"l"</span>,</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.srt =</span> <span class="dv">45</span>,</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">tl.cex =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Looks much better, now lets save it as <code>rds</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(piv_df_mys, <span class="st">"./data/rds/pivot_df.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>piv_df_mys <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"./data/rds/pivot_df.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

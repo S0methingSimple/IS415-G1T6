@@ -17,6 +17,8 @@ This page provides instructions on how to recreate the pre-processed datasets th
 The following will be the packages used for this study and the Shiny Application:
 
 ```{r}
+#| eval: false
+
 pacman::p_load(sf, st, tidyverse, raster, tmap, tmaptools, ggplot2, gridExtra, spatstat, sfdep, spdep, ClustGeo, 
                ggpubr, cluster, factoextra, NbClust,
                heatmaply, corrplot, psych, GGally)
@@ -57,6 +59,8 @@ There are a total of 5 aspatial datasets used in this project.
 We start by importing the crime rate and population csv file into R.
 
 ```{r}
+#| eval: false
+
 crime_df <- read_csv("data/aspatial/crime_district.csv")
 population_df <- read_csv("data/aspatial/population_district.csv")
 ```
@@ -66,6 +70,8 @@ population_df <- read_csv("data/aspatial/population_district.csv")
 Next, we import the administrative (Level 2, District) regions of Malaysia.
 
 ```{r}
+#| eval: false
+
 mys_sf <- read_sf(dsn = "data/geospatial/mys_adm_unhcr_20210211_shp", 
                  layer = "mys_admbnda_adm2_unhcr_20210211") %>%
           st_transform(crs = 3168)
@@ -95,6 +101,8 @@ We will also be importing and working we several other potentially related data 
 -   `ep_ratio`: Ratio of the number of employed people to the working-age (15-64) population
 
 ```{r}
+#| eval: false
+
 poverty_df <- read_csv("data/aspatial/poverty_district.csv")
 inequality_df <- read_csv("data/aspatial/inequality_district.csv")
 labour_df <- read_csv("data/aspatial/labour_district.csv")
@@ -114,31 +122,33 @@ Before we can check the mappings we convert `state` and `district` to upper to e
 Convert state and district to upper for matching
 
 ```{r}
+#| eval: false
+
 crime_df <- crime_df %>%
               mutate(year = year(date),
                      state = toupper(state),
                      district = toupper(district))
-crime_df
 ```
 
 #### Population
 
 ```{r}
+#| eval: false
+
 population_df <- population_df %>%
               mutate(year = year(date),
                      state = toupper(state),
                      district = toupper(district))
-population_df
 ```
 
 #### Malaysia
 
 ```{r}
+#| eval: false
+
 mys_sf <- mys_sf %>%
           mutate(ADM1_EN = toupper(ADM1_EN),
                  ADM2_EN = toupper(ADM2_EN))
-
-mys_sf
 ```
 :::
 
@@ -150,6 +160,8 @@ Next we check for any mismatch on ADM1 (State-level)
 #### Overview
 
 ```{r}
+#| eval: false
+
 print("Unique states in crime_df:")
 unique(crime_df$state)
 
@@ -165,6 +177,8 @@ At first glance we can see a mismatch in the length of the states.
 #### Difference
 
 ```{r}
+#| eval: false
+
 state_crime <- unique(crime_df$state)
 state_sf <- unique(mys_sf$ADM1_EN)
 
@@ -189,34 +203,36 @@ For this project we will be focusing on West Malaysia, and thus will be filterin
 #### Crime
 
 ```{r}
+#| eval: false
+
 crime_df <- crime_df %>%
               filter(state != 'MALAYSIA' & state != 'SABAH' & state != 'SARAWAK' & 
                      district != 'ALL' & type != 'all') %>%
               mutate(state = replace(state, state == 'W.P. KUALA LUMPUR', 'KUALA LUMPUR'))
-crime_df
 ```
 
 #### Population
 
 ```{r}
+#| eval: false
+
 population_df <- population_df %>%
           filter(state != 'SABAH' & state != 'SARAWAK' & state != 'W.P. LABUAN' &
                  sex == "both" & age == "overall" & ethnicity == "overall" ) %>%
           mutate(state = replace(state, state == 'W.P. KUALA LUMPUR', 'KUALA LUMPUR'),
                  state = replace(state, state == 'W.P. PUTRAJAYA', 'KUALA LUMPUR')) %>%
           dplyr::select(state, district, year, population)
-population_df
 ```
 
 #### Malaysia
 
 ```{r}
+#| eval: false
+
 mys_sf <- mys_sf %>%
           filter(ADM1_EN != 'W.P. LABUAN' & ADM1_EN != 'SABAH' & ADM1_EN != 'SARAWAK') %>%
           mutate(ADM1_EN = replace(ADM1_EN, ADM1_EN == 'W.P. KUALA LUMPUR', 'KUALA LUMPUR'),
                  ADM1_EN = replace(ADM1_EN, ADM1_EN == 'W.P. PUTRAJAYA', 'KUALA LUMPUR'))
-
-mys_sf
 ```
 :::
 
@@ -233,11 +249,15 @@ Next we will be wrangling the data on the district level, the methodology is sim
 #### 2.3.4.1 State-District Mismatch
 
 ```{r}
+#| eval: false
+
 crime_df <- crime_df %>% mutate(state_district = paste(state, district, sep = "-"))
 mys_sf <- mys_sf %>% mutate(state_district = paste(ADM1_EN, ADM2_EN, sep = "-"))
 ```
 
 ```{r}
+#| eval: false
+
 state_district_crime <- unique(crime_df$state_district)
 state_district_sf <- unique(mys_sf$state_district)
 
@@ -258,6 +278,8 @@ That is alot of mismatch! The process involves checking the available districts 
 After the team sat down to sort out the mapping this is the list of mapping to address the above mismatch.
 
 ```{r}
+#| eval: false
+
 crime_df <- crime_df %>%
   mutate(district = case_when(
     state == "JOHOR" & district %in% c("ISKANDAR PUTERI", "NUSAJAYA", "JOHOR BAHRU SELATAN", "JOHOR BAHRU UTARA", "SERI ALAM") ~ "JOHOR BAHRU",
@@ -304,6 +326,8 @@ In the following we can see the distribution of crime rates (raw) on the map of 
 ##### Visualization
 
 ```{r}
+#| eval: false
+
 og_crime_df_mys <- crime_df %>%
   filter(year >= 2019 & year <= 2022) %>%
   left_join(mys_sf, by = c("state" = "ADM1_EN", "district" = "ADM2_EN")) %>%
@@ -344,12 +368,6 @@ choro_map <- tm_shape(og_crime_df_mys_grp) +
 
 tmap_arrange(choro_map, mys_map, ncol = 2)
 ```
-
-##### Table
-
-```{r}
-og_crime_df_mys
-```
 :::
 
 ::: callout-note
@@ -367,6 +385,8 @@ The crime data provided is not sufficient to paint an accurate picture of the cr
 The data for population is only available from 2020 - 2024. Since 2019 is missing from data set, we will do a best effort mapping where year: 2020 -\> 2019.
 
 ```{r}
+#| eval: false
+
 population_row <- population_df %>%
   filter(year == 2020) %>%
   mutate(year = 2019) 
@@ -378,6 +398,8 @@ unique(population_df$year)
 Next we check mismatch on the state-district.
 
 ```{r}
+#| eval: false
+
 state_district_population <- unique(population_df$state_district)
 
 missing_in_sf <- setdiff(state_district_population, state_district_sf)
@@ -395,6 +417,8 @@ print(missing_in_population)
 We employed the similar methodology to map the Population data.
 
 ```{r}
+#| eval: false
+
 population_df <- population_df %>%
   mutate(district = case_when(
     state == "JOHOR" & district == "KULAI" ~ "KULAIJAYA",
@@ -430,6 +454,8 @@ The following is a quick visualization of the population data in West Malaysia.
 ##### Visualization
 
 ```{r}
+#| eval: false
+
 population_df_mys <- population_df %>%
   left_join(mys_sf, by = c("state" = "ADM1_EN", "district" = "ADM2_EN")) %>%
   dplyr::select(state, district, year, population, geometry)
@@ -469,12 +495,6 @@ choro_map <- tm_shape(population_df_mys_grp) +
 
 tmap_arrange(choro_map, mys_map, ncol = 2)
 ```
-
-##### Overview
-
-```{r}
-population_df_mys
-```
 :::
 
 ::: callout-note
@@ -492,6 +512,8 @@ We will next perform join of the data on `crime_df` with `population_df` to norm
 Here we compute the crimes per 1000 capita to ensure the data is normalized
 
 ```{r}
+#| eval: false
+
 crime_df_mys <- crime_df %>% 
   filter(year >= 2019 & year <= 2022) %>%
   left_join(population_df, by = c("state", "district", "year")) %>%
@@ -504,6 +526,8 @@ crime_df_mys <- crime_df %>%
 Given the missing data for `POKOK SENA`, we will be getting the state average for the district in this case the state of `KEDAH`
 
 ```{r}
+#| eval: false
+
 pokok_sena_rows <- crime_df_mys %>%
   filter(state == "KEDAH") %>%
   group_by(state, year, category, type) %>%
@@ -521,6 +545,8 @@ crime_df_mys <- bind_rows(crime_df_mys, pokok_sena_rows)
 We finish off the join with a join with our spatial dataset `mys_sf`.
 
 ```{r}
+#| eval: false
+
 crime_df_mys <- crime_df_mys %>%
   left_join(mys_sf, by = c("state" = "ADM1_EN", "district" = "ADM2_EN")) %>%
   dplyr::select(state, district, year, category, type, crimes, crimes_pc, population, geometry)
@@ -532,6 +558,8 @@ crime_df_mys
 ### 2.3.7 Crime per Capita Distribution
 
 ```{r}
+#| eval: false
+
 crime_df_mys_grp <- crime_df_mys %>%
   group_by(state, district) %>%
   summarize(total_crimes_pc = sum(crimes_pc)/4)
@@ -582,6 +610,8 @@ Note how much more insights we can extract from our adjusted crime choro plot. T
 Next we take a quick look at how correlated the data are with across the various types of crimes
 
 ```{r}
+#| eval: false
+
 piv_crime_df_mys <- crime_df_mys %>%
   mutate(cat_type = paste(category, type, sep = "-")) %>%
   select(-category, -type, -crimes, -population) %>%
@@ -604,6 +634,8 @@ corrplot.mixed(cor(st_drop_geometry(piv_crime_df_mys)[, 4:15]),
 During the EDA we have noted that some crimes such as `robbery_gang_armed` tend are typically really low in record. Hence to further narrow our subsequent analysis we will group robbery as one category and vehicle theft as the other since they are highly correlated.
 
 ```{r}
+#| eval: false
+
 piv_crime_df_mys <- piv_crime_df_mys %>%
   mutate(
     robbery = `assault-robbery_gang_armed` + `assault-robbery_gang_unarmed` + 
@@ -623,6 +655,8 @@ piv_crime_df_mys
 The final crime type correlation matrix should look like the following.
 
 ```{r}
+#| eval: false
+
 corrplot.mixed(cor(st_drop_geometry(piv_crime_df_mys)[, 4:10]),
          lower = "ellipse", 
                upper = "number",
@@ -646,6 +680,8 @@ To further enrich our analysis we will incoporate several socio-economic data wh
 ### 2.4.1 State Wrangling
 
 ```{r}
+#| eval: false
+
 print("Unique states in mys_sf:")
 unique(mys_sf$ADM1_EN)
 
@@ -662,6 +698,8 @@ unique(labour_df$state)
 Similarly we prep the data by transforming the data and filtering out east Malaysia
 
 ```{r}
+#| eval: false
+
 poverty_df <- poverty_df %>%
           mutate(year = year(date),
                  state = toupper(state),
@@ -686,6 +724,8 @@ labour_df <- labour_df %>%
 ```
 
 ```{r}
+#| eval: false
+
 print("Unique states & years in mys_sf:")
 sort(unique(mys_sf$ADM1_EN))
 
@@ -719,6 +759,8 @@ Since years 2020 and 2021 are missing from data set, we will map to prior or the
 -   2021 -\> 2022
 
 ```{r}
+#| eval: false
+
 poverty_rows <- poverty_df %>%
   mutate(year = ifelse(year == 2019, 2020, 2021))
 poverty_df <- bind_rows(poverty_df, poverty_rows)
@@ -735,6 +777,8 @@ unique(inequality_df$year)
 Similarly we will have to wrangle for District level too.
 
 ```{r}
+#| eval: false
+
 poverty_df <- poverty_df %>% mutate(state_district = paste(state, district, sep = "-"))
 inequality_df <- inequality_df %>% mutate(state_district = paste(state, district, sep = "-"))
 ```
@@ -742,6 +786,8 @@ inequality_df <- inequality_df %>% mutate(state_district = paste(state, district
 Since the data for inequality comes from the same ministry and the districts are the same we will only be checking for Poverty.
 
 ```{r}
+#| eval: false
+
 state_district_poverty <- unique(poverty_df$state_district)
 
 missing_in_sf <- setdiff(state_district_poverty, state_district_sf)
@@ -759,6 +805,8 @@ print(missing_in_poverty)
 This step is getting tedious, but still, very crucial.
 
 ```{r}
+#| eval: false
+
 poverty_df <- poverty_df %>%
   mutate(district = case_when(
     state == "JOHOR" & district == "KULAI" ~ "KULAIJAYA",
@@ -784,6 +832,8 @@ poverty_df
 ```
 
 ```{r}
+#| eval: false
+
 inequality_df <- inequality_df %>%
   mutate(district = case_when(
     state == "JOHOR" & district == "KULAI" ~ "KULAIJAYA",
@@ -814,10 +864,14 @@ inequality_df
 No change as with above.
 
 ```{r}
+#| eval: false
+
 labour_df <- labour_df %>% mutate(state_district = paste(state, district, sep = "-"))
 ```
 
 ```{r}
+#| eval: false
+
 state_district_labour <- unique(labour_df$state_district)
 
 missing_in_sf <- setdiff(state_district_labour, state_district_sf)
@@ -833,6 +887,8 @@ print(missing_in_labour)
 #### 2.4.3.2 Re-Mapping Districts
 
 ```{r}
+#| eval: false
+
 labour_df <- labour_df %>%
   mutate(district = case_when(
     state == "JOHOR" & district == "KULAI" ~ "KULAIJAYA",
@@ -852,8 +908,6 @@ labour_df <- labour_df %>%
             p_rate = mean(p_rate),
             u_rate = mean(u_rate),
             ep_ratio = mean(ep_ratio))
-
-labour_df
 ```
 
 ::: callout-note
@@ -875,6 +929,8 @@ However we do not have labour data for the following state-districts, hence we w
 We join the other aspatial data with our spatial crime dataframe.
 
 ```{r}
+#| eval: false
+
 piv_full_df_mys <- piv_crime_df_mys %>%
   left_join(poverty_df, by = c("state", "district", "year")) %>%
   left_join(inequality_df, by = c("state", "district", "year")) %>%
@@ -889,6 +945,8 @@ piv_full_df_mys
 Similar to crime, labour force will also need to be adjusted to the districts population for a more accurate representation.
 
 ```{r}
+#| eval: false
+
 piv_full_df_mys <- piv_full_df_mys %>% 
   mutate(lf = lf/population,
          lf_employed = lf_employed/population,
@@ -900,6 +958,8 @@ piv_full_df_mys <- piv_full_df_mys %>%
 Here we will be substituting the national average for the previously highlighted missing data from the labour dataset
 
 ```{r}
+#| eval: false
+
 target_states <- c("PERLIS", "KUALA LUMPUR")
 target_districts <- c("PERLIS", "WP. KUALA LUMPUR", "W.P. PUTRAJAYA")
 
@@ -932,6 +992,8 @@ piv_full_df_mys <- piv_full_df_mys %>%
 We will keep the year for filtering our application, hence we will also create an aggregate the data across the 4 years (2019 - 2022)
 
 ```{r}
+#| eval: false
+
 piv_full_df_mys_agg <- piv_full_df_mys %>%
   group_by(state, district) %>%
   summarise(year = 0,
@@ -965,6 +1027,8 @@ To simplify our subsequent analysis and fine tune our clustering we will be chec
 ### 2.5.1 Visualizing the Correlation of Data
 
 ```{r}
+#| eval: false
+
 corrplot.mixed(cor(st_drop_geometry(piv_full_df_mys %>% filter(year == 0))[, 4:20]),
          lower = "ellipse", 
                upper = "number",
@@ -984,6 +1048,8 @@ Since the variable
 2.  `u_rate` is highly correlated (\>0.8) with `lf_unemployed` we can drop it too.
 
 ```{r}
+#| eval: false
+
 piv_df_mys <- piv_full_df_mys %>%
   mutate(state_district = str_to_title(paste(state, district, sep = "-"))) %>%
   select(-lf, -lf_employed, -lf_unemployed, -lf_outside, -p_rate) %>%
@@ -994,6 +1060,8 @@ colnames(piv_df_mys)
 ```
 
 ```{r}
+#| eval: false
+
 corrplot.mixed(cor(st_drop_geometry(piv_df_mys %>% filter(year == 0))[, 5:16]),
          lower = "ellipse", 
                upper = "number",
@@ -1007,9 +1075,13 @@ corrplot.mixed(cor(st_drop_geometry(piv_df_mys %>% filter(year == 0))[, 5:16]),
 Looks much better, now lets save it as `rds`.
 
 ```{r}
+#| eval: false
+
 write_rds(piv_df_mys, "./data/rds/pivot_df.rds")
 ```
 
 ```{r}
+#| eval: false
+
 piv_df_mys <- read_rds("./data/rds/pivot_df.rds")
 ```
