@@ -78,8 +78,8 @@ The primary objective of this project is to investigate the spatial patterns and
     **Use Moran's I or Geary's C to measure the overall spatial pattern of crime rates.
 4.  **Local Spatial Autocorrelation\
     **Employing LISA maps to identify hotspots and coldspots of crime.
-5.  **Emerging Hotspot Analysis\
-    **Analyze changes in crime rates over time to identify areas with rapidly increasing crime rates.
+5.  **Spatial Clustering\
+    **In-depth analysis of clusters performed with different clustering techniques.
 
 # 3. Analysis in Detail
 
@@ -89,17 +89,17 @@ The primary objective of this project is to investigate the spatial patterns and
 
 A Choropleth Map for Exploratory Data Analysis (EDA) with a histogram will be at the core of this project. This interactive map will allow users to **view crime hotspots** and filter them based on different conditions, providing an overview of crime rates across Malaysia over time. Users can adjust a slider to select the year and use a dropdown menu to choose the crime type, with the map displaying the crime rate using a color scale.
 
-### 2. **Spatial Lag Model (Various)**
+### 2. **Crime Trends Analysis Dashboard**
 
 (Done by: Yee Kai)
 
-A Spatial Lag Model will also be used to assess the impact of neighboring crime rates on specific locations. This will be visualized through a **choropleth map showing spatial lag values** for different crime types, with high lag values meaning that neighboring areas have high crime rates.
+A comprehensive dashboard to compare crime trends between different states and over various time periods. By filtering the dashboard by year and crime type, users can delve into specific crime patterns and view potential factors influencing these trends.
 
 ### 3. **Global Spatial Autocorrelation (Moran's I and/or Geary's C)**
 
 (Done by: Jenna)
 
-Global Spatial Autocorrelation will be analyzed using Moran's I and/or Geary's C statistics to assess the overall spatial pattern of crime rates across Malaysia. This will be represented by a choropleth map showing **Moran's I or Geary's C values** for different crime types, with high positive values indicating clustering of similar values and high negative values indicating dispersion of dissimilar values.
+Global Spatial Autocorrelation will be represented by a choropleth map showing **Moran's I or Geary's C values** for different crime types, with high positive values indicating clustering of similar values and high negative values indicating dispersion of dissimilar values.
 
 ### 4. **Local Spatial Autocorrelation (Local Moran's I - LISA Map)**
 
@@ -107,11 +107,17 @@ Global Spatial Autocorrelation will be analyzed using Moran's I and/or Geary's C
 
 Local Spatial Autocorrelation will be examined using Local Moran's I, visualized through a LISA map. This helps identify **hotspots and coldspots of crime**, with hotspots having high positive values and coldspots having high negative values.
 
-### 5. **Emerging Hotspot Analysis**
+### 5. **Spatial Clustering Configurations**
 
 (Done by: Jeffery)
 
-We will also use Emerging Hotspot Analysis to identify areas where crime rates are increasing rapidly. This will be visualized through a choropleth map showing the **change in crime rates over time for different areas**, allowing for the identification of areas with significant increases in crime rates being shown as emerging hotspots.
+To uncover underlying spatial patterns in crime data, we explored various clustering configurations. By experimenting with different clustering algorithms and parameter settings, we aimed to identify the optimal clustering scheme that best represents the spatial distribution of crime.
+
+### 6. **Spatial Clustering Results**
+
+(Done by: Jeffery)
+
+Interactive cluster plots and subplots, were used to visualize and interpret the clustering patterns. By comparing different clustering techniques, users can identify the most effective approach for understanding the spatial relationships between crime events.
 
 # 4. Expected Outcomes
 
