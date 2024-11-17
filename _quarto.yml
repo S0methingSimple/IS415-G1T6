@@ -13,6 +13,8 @@ website:
         text: Project Poster
       - href: datapreprocessing.qmd
         text: Data Pre-processing
+      - href: userguide.qmd
+        text: User Guide
 
 format:
   html:
