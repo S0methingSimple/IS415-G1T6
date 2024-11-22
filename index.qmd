@@ -2,14 +2,32 @@
 title: "Crime Hotspots: A Malaysian Perspective"
 ---
 
-![](assets/banner.jpeg){width="1000"}
-
-Sniffing out crime hotspots in Malaysia, making sure everyone stays safe.
-
 By Group 6: Hei Yee Kai, Jeffery Lau Wei Yang, Cheo Hai Xuan Jenna
 
-This project is done for Singapore Management University’s IS415 Geospatial Analytics & Applications 2024.
+![](assets/banner.png){width="1000"}
+
+------------------------------------------------------------------------
 
 This is our webpage where we aim to create an interactive application that allows users to easily view and analyse crime rates in Malaysia.
 
-Satu Malaysia 🇲🇾!
+## Introduction
+
+This research delves into the spatial dynamics of crime in Malaysia, utilizing advanced spatial analysis techniques to uncover patterns and trends. By analyzing a comprehensive dataset of crime incidents, we aim to identify hotspots, coldspots, and spatial clusters of criminal activity. Through this exploration, we seek to provide valuable insights into the factors influencing crime and to inform evidence-based crime prevention strategies. Previous studies have demonstrated the efficacy of spatial analysis in understanding crime patterns. Research has shown that property crimes tend to cluster in urban areas, while violent crimes may exhibit different spatial patterns. Spatial autocorrelation and clustering techniques have been employed to identify spatial relationships between crime and socio-economic factors, providing valuable insights for targeted interventions. Additionally, exploratory spatial data analysis (ESDA) has been used to uncover spatial autocorrelation and clustering in crime data.
+
+## Significance of Spatial Analysis
+
+Spatial analysis offers a powerful lens to examine crime patterns and their underlying causes. By visualizing crime data on maps, we can identify spatial clusters, hotspots, and coldspots. This information can help law enforcement agencies allocate resources more effectively, prioritize areas for increased surveillance, and develop targeted crime prevention strategies. Moreover, by analyzing the spatial relationships between crime and other factors, such as socioeconomic conditions and infrastructure, we can gain a deeper understanding of the factors driving crime and develop evidence-based policies.
+
+## Breakdown of Analysis
+
+1.  Exploratory Data Analysis (EDA): Visualize the spatial and temporal trends of crime in Malaysia.
+
+2.  Spatial Autocorrelation (SPA): Explore the spatial dependency of crime incidents across different regions.
+
+3.  Spatial Clustering (SPC): Identify clusters of similar crime patterns and understand their spatial distribution.
+
+------------------------------------------------------------------------
+
+This project is done for Singapore Management University’s IS415 Geospatial Analytics & Applications 2024.
+
+![](assets/smu-logo.jpeg){width="1000"}
